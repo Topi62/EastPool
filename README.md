@@ -30,6 +30,6 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 1. sarjataulukko
 1. pistepörssi
    1. ainakin yhteinen 
-   1.joukkueen sisäinen.
+   1. joukkueen sisäinen.
 
  
