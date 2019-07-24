@@ -24,12 +24,12 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 1. joukkueen ilmoittautuminen, tunnuksien luonti
 1. ottelukalenteri
 1. ottelun pelikirjanpito
- 1. (reaaliajassa)
- 1. vaatii tunnistautumisen
+   1. (reaaliajassa)
+   1. vaatii tunnistautumisen
 1. ottelun etäseuranta
 1. sarjataulukko
 1. pistepörssi
- 1. ainakin yhteinen 
- 1.joukkueen sisäinen.
+   1. ainakin yhteinen 
+   1.joukkueen sisäinen.
 
  
