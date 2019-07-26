@@ -13,11 +13,14 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 ## Tietotauluja
 
-1. joukkueet
-1. pelaajat
-1. sarjataulukko
-1. pistepörssi
-1. ottelut
+1. Team joukkueet, sarjataulukko näyttää paremmuusjärjestyksen
+1. Player pelaajat, kuuluvat johonkin joukkueeseen, pistepörssi
+1. Season kausi, syyskuusta toukokuulle vuosittain
+1. Match ottelut, joukkueet kohtaavat
+1. Game pelit, pelaajat kohtaavat, pelitulos ratkaisee ottelun
+1. Frame erät, pelin tulos ratkeaa erissä
+
+[tietokantakaavio](EastPoolTK.pdf)
 
 ## Nettilomakkeita
 
@@ -27,9 +30,9 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
    1. (reaaliajassa)
    1. vaatii tunnistautumisen
 1. ottelun etäseuranta
-1. sarjataulukko
+1. sarjataulukko per kausi
 1. pistepörssi
-   1. ainakin yhteinen 
-   1. joukkueen sisäinen.
+   1. pelaajat per kausi
+   1. joukkueen sisäinen
 
  
