@@ -20,7 +20,7 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 1. Game pelit, pelaajat kohtaavat, pelitulos ratkaisee ottelun
 1. Frame erät, pelin tulos ratkeaa erissä
 
-[tietokantakaavio](EastPoolTK.pdf)
+[tietokantakaavio](Documents/EastPoolTK.pdf)
 
 ## Nettilomakkeita
 
