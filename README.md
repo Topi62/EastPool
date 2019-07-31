@@ -4,6 +4,13 @@
 
 Biljardiliigan (East-Pool) tulospalvelu
 
+## Heroku
+
+[eastpool](https://eastpool.herokuapp.com/team/listTeam/)
+
+Tässä vaiheessa toteutettu joukkuiden listaus ja joukkueen lisääminen tietokantaan. Näissäkin lyhenne menee nimen paikalle, 
+ja lyhenne jää tyhjäksi. 
+
 ## Taustaa 
 
 East-Pool ravintolabiljardiliigaa on pelattu vuodeta 2005 lähtien Itä-Helsingin ravintoloissa. Nykyinen (kaudet 2009-2010…2018-2019) tulospalvelu tapahtuu ilmoittamalla tulos jälkikäteen php:lla ja mySql:llä
@@ -20,7 +27,7 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 1. Game pelit, pelaajat kohtaavat, pelitulos ratkaisee ottelun
 1. Frame erät, pelin tulos ratkeaa erissä
 
-[tietokantakaavio](Documents/EastPoolTK.pdf)
+[tietokantakaavio](documents/EastPoolTK.pdf)
 
 ## Nettilomakkeita
 
