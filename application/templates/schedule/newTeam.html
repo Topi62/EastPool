@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('team_create') }}">
+   Anna 3 kirjaimen lyhenne  <input type="text" Name="shortName"/><br>
+   Anna joukkueelle nimi  <input type="text" Name="longName"/><br>
+   <input type="submit" value="lisää joukkue"/>
+</form>
+{% endblock %}

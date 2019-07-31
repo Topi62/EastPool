@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Lyhenne</th>
+      <th>Nimi</th>
+    </tr>
+    {% for team in teams %}
+    <tr>
+      <td>{{ team.shortName }}</td>
+      <td>{{ team.longName }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
