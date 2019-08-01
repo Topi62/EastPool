@@ -31,7 +31,7 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 ## User Storyt
 
-[user storyt](documents\UserStories.pdf)
+[user storyt](documents/UserStories.pdf)
 
 ### Käyttökuvauksien taustana ollut alustava luettelo 
 
