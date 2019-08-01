@@ -1,6 +1,12 @@
 # Tietokantakaavio muokattavassa muodossa
 *.drawio
 
+# Userstoryjen muokkaustiedot
+UserStories.tex
+UserStories.aux
+UserStrories.log
+*.synctex.gz
+
 # Tietokanta
 EastPool.db
 

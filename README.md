@@ -29,7 +29,11 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 [tietokantakaavio](documents/EastPoolTK.pdf)
 
-## Nettilomakkeita
+## User Storyt
+
+[user storyt](documents\UserStories.pdf)
+
+### Käyttökuvauksien taustana ollut alustava luettelo 
 
 1. joukkueen ilmoittautuminen, tunnuksien luonti
 1. ottelukalenteri
