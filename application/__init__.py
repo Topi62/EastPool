@@ -2,18 +2,18 @@
 from flask import Flask
 app = Flask(__name__)
 
-# Tuodaan SQLAlchemy käyttöön
+# Tuodaan SQLAlchemy k&auml;ytt&ouml;&ouml;n
 from flask_sqlalchemy import SQLAlchemy
 
-# Käytetään EastPool.db-nimistä SQLite-tietokantaa. Kolme vinoviivaa
-# kertoo, tiedosto sijaitsee tämän sovelluksen tiedostojen kanssa
+# K&auml;ytet&auml;&auml;n EastPool.db-nimist&auml; SQLite-tietokantaa. Kolme vinoviivaa
+# kertoo, tiedosto sijaitsee t&auml;m&auml;n sovelluksen tiedostojen kanssa
 # samassa paikassa
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///EastPool.db"
-# Pyydetään SQLAlchemyä tulostamaan kaikki SQL-kyselyt
+# Pyydet&auml;&auml;n SQLAlchemy&auml; tulostamaan kaikki SQL-kyselyt
 app.config["SQLALCHEMY_ECHO"] = True
 
-# Luodaan db-olio, jota käytetään tietokannan käsittelyyn
+# Luodaan db-olio, jota k&auml;ytet&auml;&auml;n tietokannan k&auml;sittelyyn
 db = SQLAlchemy(app)
 
 # omat toiminnallisuudet
