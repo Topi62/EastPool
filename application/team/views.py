@@ -1,21 +1,25 @@
 from application import app, db
 from flask import redirect, url_for, render_template, request
-from application.schedule.models import Team
+from application.team.models import Team
+from application.team.forms import TeamForm
 
 @app.route("/team/listTeam/")
 def team_list():
     return render_template("team/listTeam.html", teams =  Team.query.all())
     return redirect(url_for("team_list"))
 
-@app.route("/schedule/newTeam/")
+@app.route("/team/newTeam/")
 def team_form():
-    return render_template("schedule/newTeam.html")
+    return render_template("team/newTeam.html", form = TeamForm())
 
-@app.route("/schedule/", methods=["POST"])
+@app.route("/team/", methods=["POST"])
 def team_create():
-    s = Team(request.form.get('shortName'))
-   
-    db.session().add(s)
+    form = TeamForm(request.form)
+    if not form.validate():
+        return render_template("team/newTeam.html", form = form)
+
+    t = Team(form.shortname.data, form.longname.data)
+    db.session().add(t)
     db.session().commit()
 
     return redirect(url_for("team_list"))

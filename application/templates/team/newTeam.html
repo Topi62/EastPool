@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('team_create') }}">
+  <table>
+     <tr>
+	<td>
+	  {{form.shortname.label}}
+	</td>
+	<td>
+          {{form.shortname}}
+        </td>
+	<td>
+	  <ul>
+	    {% for error in form.shortname.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>	
+     </tr>
+     <tr>
+        <td>
+          {{form.longname.label}}
+        </td>
+        <td>
+          {{form.longname}}
+        </td>
+	<td>
+	  <ul>
+	    {% for error in form.longname.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>
+     </tr>
+     <tr>
+        <td>
+          <input type="submit" value="lisää joukkue"/>
+        </td>
+     </tr>
+  </table>
+</form>
+{% endblock %}
