@@ -5,13 +5,17 @@ app = Flask(__name__)
 # Tuodaan SQLAlchemy k&auml;ytt&ouml;&ouml;n
 from flask_sqlalchemy import SQLAlchemy
 
-# K&auml;ytet&auml;&auml;n EastPool.db-nimist&auml; SQLite-tietokantaa. Kolme vinoviivaa
-# kertoo, tiedosto sijaitsee t&auml;m&auml;n sovelluksen tiedostojen kanssa
-# samassa paikassa
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///EastPool.db"
-# Pyydet&auml;&auml;n SQLAlchemy&auml; tulostamaan kaikki SQL-kyselyt
-app.config["SQLALCHEMY_ECHO"] = True
+import os
+
+if os.environ.get("HEROKU"):
+    # Herokussa postgresql
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else
+    #paikallisesti sqlite
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///EastPool.db"
+    # Pyydet&auml;&auml;n SQLAlchemy&auml; tulostamaan kaikki SQL-kyselyt
+    app.config["SQLALCHEMY_ECHO"] = True
 
 # Luodaan db-olio, jota k&auml;ytet&auml;&auml;n tietokannan k&auml;sittelyyn
 db = SQLAlchemy(app)
@@ -42,4 +46,8 @@ def load_user(user_id):
    return  User.query.get(user_id)
 
 # Luodaan lopulta tarvittavat tietokantataulut
-db.create_all()
+
+try: 
+    db.create_all()
+except:
+    pass
