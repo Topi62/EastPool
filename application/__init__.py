@@ -7,12 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 import os
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 if os.environ.get("HEROKU"):
     # Herokussa postgresql
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
     #paikallisesti sqlite
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///EastPool.db"
     # Pyydet&auml;&auml;n SQLAlchemy&auml; tulostamaan kaikki SQL-kyselyt
     app.config["SQLALCHEMY_ECHO"] = True
