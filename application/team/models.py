@@ -1,11 +1,13 @@
 from application  import db
 
 class Team(db.Model):
-   idteam = db.Column(db.Integer, primary_key=True)
-   shortname = db.Column(db.String(3))
+   shortname = db.Column(db.String(3), primary_key=True)
    longname = db.Column(db.String(15))
 
-   user = db.relationship("User", backref='account', lazy=True)
+   account = db.relationship("User", backref='team', lazy=True)
+   match = db.relationship("Match", backref='team', lazy=True)
+ #  match1 = db.relationship("Match", backref='team', lazy=True)
+
 
    def __init__(self, shortname, longname):
      self.shortname = shortname

@@ -12,7 +12,7 @@ class User(db.Model):
                               onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(14), nullable=False)
-    team = db.Column(db.String(3), ForeignKey('team.shortname'))
+    shortname = db.Column(db.String(3), ForeignKey('team.shortname'))
     username = db.Column(db.String(18), nullable=True)
     password = db.Column(db.String(8), nullable=False)
 
