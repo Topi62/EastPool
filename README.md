@@ -13,6 +13,8 @@ sovelluksen. Ongelmana vaikuttaa olevan kysely, joka ei jostain syystä löydä 
 
 Kuitenkin nyt on sqlite paikallisesti ja postgresql herokussa. Validointia on aloitettu. Tietotauluja on useita, joskaan foreignkey hommassa voi olla jotain vikaa 
 
+Kirjautuminen ei vaikuta onnistuvan, mutta testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TST' ja salasana 'Testi'
+
 ## Taustaa 
 
 East-Pool ravintolabiljardiliigaa on pelattu vuodeta 2005 lähtien Itä-Helsingin ravintoloissa. Nykyinen (kaudet 2009-2010…2018-2019) tulospalvelu tapahtuu ilmoittamalla tulos jälkikäteen php:lla ja mySql:llä
