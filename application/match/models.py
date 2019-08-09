@@ -11,8 +11,9 @@ class Match(db.Model):
    visitgamenumwins = db.Column(db.Integer, default = 0)
    status = db.Column(db.String(1), default='T')
 
-   hometeam = db.relationship("Team", foreign_keys=[hometeamid])
-   visiteam = db.relationship("Team", foreign_keys=[visitorteamid])
+   hometeam = db.relationship("Team", foreign_keys=[hometeamid], uselist=False) 
+   visiteam = db.relationship("Team", foreign_keys=[visitorteamid], uselist=False)
+   season = db.relationship("Season")
 
    def __init__(self, idseason, hometeamid, visitorteamid):
      self.idseason = idseason

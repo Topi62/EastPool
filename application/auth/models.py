@@ -12,13 +12,13 @@ class User(db.Model):
                               onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(14), nullable=False)
-    shortname = db.Column(db.String(3), ForeignKey('team.shortname'))
+    team = db.Column(db.String(3), ForeignKey('team.shortname'), nullable=False)
     username = db.Column(db.String(18), nullable=True)
     password = db.Column(db.String(8), nullable=False)
 
-    def __init__(self, name, team, password):
+    def __init__(self, name, shortname, password):
         self.name = name
-        self.team = team
+        self.team = shortname
         self.password = password
 
     def get_id(self):

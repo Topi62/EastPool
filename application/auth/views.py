@@ -13,14 +13,14 @@ def auth_login():
     form = LoginForm(request.form)
     # mahdolliset validoinnit
 
-    user = User.query.filter_by(name=form.name.data, team=form.team.data, password=form.password.data).first()
+    user = User.query.filter_by(name=form.name.data, team=form.shortname.data, password=form.password.data).first()
     if not user:
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 
 
     login_user(user)
-    return redirect(url_for("index"))    
+    return redirect(url_for("index"))
 @app.route("/auth/logout")
 def auth_logout():
     logout_user()

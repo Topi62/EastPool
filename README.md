@@ -6,10 +6,12 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 ## Heroku
 
-[eastpool](https://eastpool.herokuapp.com/team/listTeam/)
+[eastpool](https://eastpool.herokuapp.com)
 
-Tässä vaiheessa toteutettu joukkuiden listaus ja joukkueen lisääminen tietokantaan. Näissäkin lyhenne menee nimen paikalle, 
-ja lyhenne jää tyhjäksi. 
+Tässä vaiheessa toteutettu joukkuiden listaus ja joukkueen lisääminen tietokantaan. Ja kirjautuminen, joskin se kaataa ainakin paikallisen
+sovelluksen. Ongelmana vaikuttaa olevan kysely, joka ei jostain syystä löydä taulusta yhtä saraketta.
+
+Kuitenkin nyt on sqlite paikallisesti ja postgresql herokussa. Validointia on aloitettu. Tietotauluja on useita, joskaan foreignkey hommassa voi olla jotain vikaa 
 
 ## Taustaa 
 
