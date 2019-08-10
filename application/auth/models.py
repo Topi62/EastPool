@@ -20,6 +20,7 @@ class User(db.Model):
         self.name = name
         self.team = shortname
         self.password = password
+        self.username = name + " " + shortname
 
     def get_id(self):
         return self.id

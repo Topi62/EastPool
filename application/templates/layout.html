@@ -8,13 +8,15 @@
   <body>
      {% if current_user.is_authenticated %}
      <p>
-      Kirjautunut nimellä {{ current_user.username }}, <a href="{{ url_for('auth_logout') }}">kirjaudu ulos</>
+      Kirjautunut nimellä {{ current_user.name }} {{current_user.team}}, <a href="{{ url_for('auth_logout') }}">kirjaudu ulos</>
      </p>
      {% else %}
      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
      {% endif %}
  
-    <p><a href="{{ url_for('team_form') }}">lis&auml;&auml; uusi</a></p>
+    <p><a href="{{ url_for('team_form') }}">lis&auml;&auml; joukkue</a></p>
+
+    <p><a href="{{ url_for('team_list') }}">listaa joukkueet</a></p>
     {% block body %}
       <p>
         Content.
