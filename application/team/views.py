@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, url_for, render_template, request
 from flask_login import login_required
+from application.views import string_check
 from application.team.models import Team
 from application.team.forms import TeamForm
 
@@ -20,12 +21,18 @@ def team_create():
     form = TeamForm(request.form)
     if not form.validate():
         return render_template("team/newTeam.html", form = form)
-
+    
+    if not (string_check(form.shortname.data, 2)):
+        return render_template("team/newTeam.html", form = form,
+                               error = "Joukkueen oltava lyhenne kaksi isoa kirjainta ja numero")
     team = Team.query.filter_by(shortname= form.shortname.data).first()
     if  team: 
         form.shortname.data = ""
         return render_template("team/newTeam.html", form = form,
 	                                    error =  "lyhenne {} on jo varattu".format(team.shortname))
+    if not (string_check(form.longname.data, 4)):
+        return render_template("team/newTeam.html", form = form,
+                                            error = "Joukkueen nimessä vain kirjaimia ja numeroita")
     t = Team(form.shortname.data, form.longname.data)
     db.session().add(t)
     db.session().commit()

@@ -1,18 +1,9 @@
-import re
 from flask import render_template, request, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 from application import app, db
+from application.views import string_check
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegUserForm, ChangePw, DelUser
-
-def string_check(string, pnum):
-    pattern = {
-       1: '[ÅÄÖA-Z][åäöa-z]{0,13}$',
-       2: '[ÅÄÖA-Z][ÅÄÖA-Z][1-9]',
-       3: '[ÅÄÖA-Zåäöa-z0-9]{1,8}$'
-       }
-    syntax =  re.compile(pattern.get(pnum), flags=0)
-    return re.match(syntax, string)
 
 
 @app.route("/auth/login", methods = ["GET", "POST"])
