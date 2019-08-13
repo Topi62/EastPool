@@ -8,10 +8,11 @@
   <body>
      {% if current_user.is_authenticated %}
      <p>
-      Kirjautunut nimellä {{ current_user.name }} {{current_user.team}}, <a href="{{ url_for('auth_logout') }}">kirjaudu ulos</>
+      Kirjautunut nimellä {{ current_user.name }} {{current_user.team}}, <a href="{{ url_for('auth_logout') }}">kirjaudu ulos</a>
+      tai <a href="{{ url_for('auth_changepw') }}">vaihda salasanaa</a> tai <a href="{{ url_for('auth_deluser') }}">poista tunnus</a>
      </p>
      {% else %}
-     <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+     <a href="{{ url_for('auth_login') }}">Kirjaudu</a> tai <a href="{{ url_for('auth_reg') }}">Rekister&ouml;idy</a>
      {% endif %}
  
     <p><a href="{{ url_for('team_form') }}">lis&auml;&auml; joukkue</a></p>

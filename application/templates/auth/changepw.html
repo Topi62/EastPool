@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<p>Anna uusi salasana kahdesti</p>
+<form method="POST" action="{{ url_for('auth_changepw') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.password.label }}
+      </td>
+      <td>
+        {{ form.password }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+	{{ form.confirm.label }}
+      </td>
+      <td>
+	{{ form.confirm }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Vaihda"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

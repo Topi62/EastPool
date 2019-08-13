@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
   
 {% block body %}
+<p>Anna joukkueelle lyhenne ja nimi.</p>
 <form method="POST" action="{{ url_for('team_create') }}">
+{{ error }}
   <table>
      <tr>
 	<td>

@@ -8,10 +8,16 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 [eastpool](https://eastpool.herokuapp.com)
 
-Tässä vaiheessa toteutettu joukkuiden listaus ja joukkueen lisääminen tietokantaan ja kirjautuminen.
+Tässä vaiheessa toteutettuja:
+  1. Käyttäjän rekisteröinti ja poisto
+  2. Käyttäjän kirjautumine sisään ja ulos, salasanan vaihto
+  3. joukkuiden listaus ja joukkueen lisääminen tietokantaan
 
-Kuitenkin nyt on sqlite paikallisesti ja postgresql herokussa. Validointia on aloitettu. Tietotauluja on neljä, seuraavaksi on tarkoitus tehdä match tauluun SCUD toiminnot. 
-Tiedon lisääminen tauluun team onnistuu.
+Tietokantana  on sqlite paikallisesti ja postgresql herokussa. 
+
+Lomakkeet validoivat syötteen.
+
+Tietotauluja on neljä, seuraavaksi on tarkoitus tehdä match tauluun SCUD toiminnot. 
 
 Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TST' ja salasana 'Testi'
 Kirjautuneen käyttäjän nimen näkymisen toteutus on vielä huono, pitäisi näkyä kentästä username, ei name + " " + team..

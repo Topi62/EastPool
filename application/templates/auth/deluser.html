@@ -2,8 +2,8 @@
 
 {% block body %}
 {{ error }}
-<p>Ole hyv&auml; ja kirjaudu</p>
-<form method="POST" action="{{ url_for('auth_login') }}">
+<p>Anna poistettavan tunnuksen nimi ja joukkue</p>
+<form method="POST" action="{{ url_for('auth_deluser') }}">
   <table>
     <tr>
       <td>
@@ -15,24 +15,15 @@
     </tr>
     <tr>
       <td>
-        {{ form.shortname.label }}
+        {{ form.team.label }}
       </td>
       <td>
-        {{ form.shortname }}
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-	{{ form.password.label }}
-      </td>
-      <td>
-	{{ form.password }}
+        {{ form.team }}
       </td>
     </tr>
     <tr>
       <td colspan="2">
-	<input type="submit" value="Kirjaudu"/>
+	<input type="submit" value="Poista"/>
       </td>
     </tr>
 </form>
