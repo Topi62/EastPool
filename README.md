@@ -8,10 +8,20 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 [eastpool](https://eastpool.herokuapp.com)
 
+Sivusto käyttää Bootstrapia jo osittain. Omaa css tiedostoa ei lue paikallisesti, joten linkki poistettu.
+
 Tässä vaiheessa toteutettuja:
   1. Käyttäjän rekisteröinti ja poisto
-  2. Käyttäjän kirjautumine sisään ja ulos, salasanan vaihto
-  3. joukkuiden listaus ja joukkueen lisääminen tietokantaan
+  2. Käyttäjän kirjautumine sisään ja ulos, salasanan vaihto, käyttäjän poisto
+  3. Joukkuiden listaus ja joukkueen lisääminen tietokantaan
+  4. Sivustolla dropdown linkit, mutta kaikkia sivuja ei vielä ole, osa vie samoille sivuille
+  5. Ylläpito kohdassa voi luoda uuden kauden ja ohjelmallisesti luoda kaksinkertaisen sarjan otteluiden pohjan olemassa oleville joukkueille
+  6. Luoduille otteluille voi antaa pelipäivät yksitellen
+  7. Ottelut listautuvat, mutta vielä puutteellisin tiedoin
+
+Seuraava vaihe
+  1. Luodaan taulut games ja frames. Syötetään niihin muutama pelattu ottelu.
+  2. Edellisestä saadaan pohja, jolla yhteenvetokyselyn tuloksena sarjataulukko.
 
 Tietokantana  on sqlite paikallisesti ja postgresql herokussa. 
 
@@ -21,6 +31,7 @@ Tietotauluja on neljä, seuraavaksi on tarkoitus tehdä match tauluun SCUD toimi
 
 Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TST' ja salasana 'Testi'
 Kirjautuneen käyttäjän nimen näkymisen toteutus on vielä huono, pitäisi näkyä kentästä username, ei name + " " + team..
+Myös oman tunnuksen ja salasanan luonti on mahdollista.
 
 ## Taustaa 
 
