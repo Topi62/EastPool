@@ -18,10 +18,13 @@ Tässä vaiheessa toteutettuja:
   5. Ylläpito kohdassa voi luoda uuden kauden ja ohjelmallisesti luoda kaksinkertaisen sarjan otteluiden pohjan olemassa oleville joukkueille
   6. Luoduille otteluille voi antaa pelipäivät yksitellen
   7. Ottelut listautuvat, mutta vielä puutteellisin tiedoin
+  8. Luotu taulut game, frame ja player
 
 Seuraava vaihe
-  1. Luodaan taulut games ja frames. Syötetään niihin muutama pelattu ottelu.
+  1. Syötetään niihin muutama pelattu ottelu.
   2. Edellisestä saadaan pohja, jolla yhteenvetokyselyn tuloksena sarjataulukko.
+  
+Yhteenvetokyselyä ei tällä hetkellä oikeastaan ole. Lähimpänä on varmistus, että ottelu luodaan kahdelle eri joukkueelle, tai kauden luonnissa otteluiden teko, jolloin haetaan team taulusta for silmukassa kaikki ja sitten uudelleen for silmukassa kaikki paitsi ylemmässä silmukassa haettu. Aika ei nyt riittänyt, kun netti takkuili tämän illan.
 
 Tietokantana  on sqlite paikallisesti ja postgresql herokussa. 
 
