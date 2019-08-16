@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error}}
+<p>Aikataulutettavat ottelut:</p>
+<Table>
+{% for match in matchs %}
+   <tr>
+    <td>Kausi {{ match.idseason }} </td>   
+    <td>Koti {{ match.hometeamid }} </td>
+    <td>Vieras {{ match.visitorteamid }} </td>
+   </tr>
+{% endfor %}
+</table>
+<p>Anna joukkueet ja pelipäivä</p>
+<form method="POST" action={{ url_for('match_time') }}>
+ <table>
+  <tr>
+   <td>
+    {{ form.hometeam.label }}
+   </td>
+   <td>
+    {{ form.hometeam }}
+   </td>
+  </tr>
+  <tr>
+   <td>
+    {{ form.visitteam.label }}
+   </td>
+   <td>
+    {{ form.visitteam }}
+   </td>
+  </tr>
+  <tr>
+   <td>
+    {{ form.gamedate.label }}
+   </td>
+   <td>
+    {{ form.gamedate }}
+   </td>
+  </tr>
+  <tr>
+   <td>
+    {{ form.season.label }}
+   </td>
+   <td>
+    {{ form.season }}
+   </td> 
+  </tr>
+  <tr>
+      <td colspan="2">
+	<input type="submit" value="Talleta"/>
+      </td>
+    </tr>
+ </table>
+</form>
+{% endblock %}  

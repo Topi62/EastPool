@@ -28,8 +28,10 @@ from application.team import models
 from application.team import views
 
 from application.season import models
+from application.season import views
 
 from application.match import models
+from application.match import views
 
 from application.auth import models 
 from application.auth import views 

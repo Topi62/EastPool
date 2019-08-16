@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+   <form method="POST"  action="{{url_for('season_form')}}"> 
+   <table>
+    <tr>
+      <th>Id</th>
+      <th>Kausi</th>   
+    </tr>
+    {% for season in seasons %}
+    <tr>
+      <td>{{ season.idseason }}</td>
+      <td>{{ season.period }}</td>
+    </tr>
+    {% endfor %}
+   </table>
+  <p> Anna uuden kauden id ja vuodet:</p>
+   <table>
+    <tr>
+     <td> 
+      {{ form.seasonid.label }}
+     </td>
+     <td>
+      {{ form.seasonid }}
+     </td>
+    </tr>
+    <tr>
+     <td>
+      {{ form.period.label }}
+     </td>
+     <td>
+      {{ form.period }}
+     </td>
+    </tr>
+    <tr> 
+     <td>
+      Luodaanko ottelut?
+     </td>
+     <td>
+      {{ form.games }}
+     </td> 
+    </tr>
+    <td colspan="2"><input type="submit" value="Luo kausi"/></td>
+   </table>
+  </form>
+{% endblock %}

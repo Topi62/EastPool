@@ -1,4 +1,5 @@
 from application  import db
+from application.team.models import Team
 
 class Match(db.Model):
    idmatch = db.Column(db.Integer, primary_key=True)
@@ -19,3 +20,13 @@ class Match(db.Model):
      self.idseason = idseason
      self.hometeamid = hometeamid
      self.visitorteamid = visitorteamid
+
+   @staticmethod
+   def create_matches(seasonid):
+     teams = Team.query.all()
+     for team in teams:
+         others = Team.query.filter(Team.shortname != team.shortname).all()
+         for other in others:
+             match= Match(idseason=seasonid, hometeamid=team.shortname, visitorteamid=other.shortname)
+             db.session.add(match)
+     db.session.commit()

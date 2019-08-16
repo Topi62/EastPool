@@ -1,4 +1,5 @@
 from application  import db
+from sqlalchemy.sql import text
 
 class Team(db.Model):
    shortname = db.Column(db.String(3), primary_key=True)
@@ -9,4 +10,11 @@ class Team(db.Model):
    def __init__(self, shortname, longname):
      self.shortname = shortname
      self.longname = longname
- 
+
+   @staticmethod
+   def check_teams(home, visit):
+      stmt = text("SELECT count(shortname) FROM team WHERE shortname IN (:home, :visit)")
+      res = db.engine.execute(stmt, home=home, visit=visit)
+      if res == 2:
+         return True
+      return False   

@@ -15,7 +15,7 @@ def team_list():
 def team_form():
     return render_template("team/newTeam.html", form = TeamForm())
 
-@app.route("/team/", methods=["POST"])
+@app.route("/team/", methods=["GET", "POST"])
 @login_required
 def team_create():
     form = TeamForm(request.form)
