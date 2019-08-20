@@ -43,6 +43,7 @@
 <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ url_for('index') }}" id="admindropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ylläpito</a>
             <div class="dropdown-menu" aria-labelledby="admindropdown">
+              <a class="dropdown-item" href="{{ url_for('team_list') }}">Joukkueet</a>
               <a class="dropdown-item" href="{{ url_for('season_form') }}">Kauden luonti</a>
               <a class="dropdown-item" href="{{ url_for('match_time') }}">Pelien ajoitus</a>
               <a class="dropdown-item" href="{{ url_for('team_form') }}">Joukkueen lis&auml;ys</a>
