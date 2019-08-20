@@ -17,4 +17,17 @@ class Team(db.Model):
       res = db.engine.execute(stmt, home=home, visit=visit)
       if res == 2:
          return True
-      return False   
+      return False  
+
+   
+   @staticmethod
+   def serie_tables(seasonid):
+     stmt = text("SELECT t.longname,"
+		 " sum(CASE WHEN (homegamenumwins > 4 AND hometeamid == t.shortname) THEN 1 ELSE 0 END) + sum(CASE WHEN (visitgamenumwins > 4 AND visitorteamid == v.shortname) THEN 1 ELSE 0 END) AS voitot"
+		 " FROM match"
+		 " JOIN team AS t ON t.shortname = match.hometeamid "
+		 " JOIN team AS v ON v.shortname = match.visitorteamid " 
+		 " WHERE idseason  == :season"
+		 " GROUP BY t.longname").params(season = seasonid)
+     res = db.engine.execute(stmt)
+     return res 

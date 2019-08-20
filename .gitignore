@@ -1,6 +1,10 @@
 # Tietokantakaavio muokattavassa muodossa
 *.drawio
 
+# Muita suunnittelujuttuja
+documents/vi*
+documents/Ins*
+
 # Userstoryjen muokkaustiedot
 UserStories.tex
 UserStories.aux

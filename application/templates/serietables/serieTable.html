@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Joukkue</th>
+      <th>Voitot</th>
+    </tr>
+    {% for team in scores %}
+    <tr>
+         <td>{{ team.longname }}</td>
+         <td>{{ team.voitot }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

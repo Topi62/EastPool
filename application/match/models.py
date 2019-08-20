@@ -30,3 +30,4 @@ class Match(db.Model):
              match= Match(idseason=seasonid, hometeamid=team.shortname, visitorteamid=other.shortname)
              db.session.add(match)
      db.session.commit()
+
