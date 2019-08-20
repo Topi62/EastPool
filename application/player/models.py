@@ -6,7 +6,6 @@ class Player(db.Model):
    name = db.Column(db.String(12), nullable=False)
    nromember = db.Column(db.Integer)
 
-   team = db.relationship("Team")
 
    def __init__(self, idteam, name, nromember):
      self.idteam = idteam

@@ -15,6 +15,7 @@ class Match(db.Model):
    hometeam = db.relationship("Team", foreign_keys=[hometeamid], uselist=False) 
    visiteam = db.relationship("Team", foreign_keys=[visitorteamid], uselist=False)
    season = db.relationship("Season")
+   match = db.relationship("Game")
 
    def __init__(self, idseason, hometeamid, visitorteamid):
      self.idseason = idseason

@@ -6,6 +6,7 @@ class Team(db.Model):
    longname = db.Column(db.String(15))
 
    team = db.relationship("User", backref='account')
+   hometeam= db.relationship("Player", backref='player')
 
    def __init__(self, shortname, longname):
      self.shortname = shortname
