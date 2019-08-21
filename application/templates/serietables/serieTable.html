@@ -1,15 +1,29 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+  <table class="table-striped tbody tr:nth-of-type(odd)">
     <tr>
-      <th>Joukkue</th>
-      <th>Voitot</th>
+      <th class="th-victive">Joukkue</th>
+      <th class="th-less-vic">Ottelut</th>
+      <th class="th-victive">Voitot</th>
+      <th class="th-less-vic">Tappiot</th>
+      <th class="th-victive">Pelivoitot</th>
+      <th class="th-less-vic">Pelitappiot</th>
+      <th class="th-victive">Erävoitot</th>
+      <th class="th-less-vic">Erätappiot</th>
+
     </tr>
     {% for team in scores %}
     <tr>
          <td>{{ team.longname }}</td>
-         <td>{{ team.voitot }}</td>
+         <td class="td-novic">{{ team.voitot + team.tappiot }}</td>
+         <td class="td-vic">{{ team.voitot }}</td>
+         <td class="td-novic">{{ team.tappiot }}</td>
+	 <td class="td-novic"">{{ team.pelivoitot }}</td>
+	 <td class="td-novic">{{ team.pelitappiot }}</td>
+         <td class="td-novic">{{ team.erävoitot }}</td>
+         <td class="td-novic">{{ team.erätappiot }}</td>
+
     </tr>
     {% endfor %}
   </table>
