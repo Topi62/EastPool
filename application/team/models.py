@@ -38,7 +38,7 @@ class Team(db.Model):
 		 " (SELECT COALESCE(sum(visitorframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch WHERE idseason= :season AND hometeamid = team.shortname  ) +"
 		 " (SELECT COALESCE(sum(homeframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch WHERE idseason= :season AND visitorteamid = team.shortname ) AS erätappiot"     
 		 " FROM team "
-	         " GROUP BY team.longname ORDER BY voitot DESC, (pelivoitot - pelitappiot) DESC, (erävoitot - erätappiot) DESC ").params(season = seasonid)	 
+	         " GROUP BY team.longname ORDER BY voitot DESC, pelivoitot - pelitappiot DESC, erävoitot - erätappiot DESC ").params(season = seasonid)	 
 		
      res = db.engine.execute(stmt)
      return res 
