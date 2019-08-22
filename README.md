@@ -17,7 +17,7 @@ Tässä vaiheessa toteutettuja:
   4. Navigointipalkki, ihan kaikki ei vielä ole toteutettu
   5. Ylläpito kohdassa voi luoda uuden kauden ja ohjelmallisesti luoda kaksinkertaisen sarjan otteluiden pohjan olemassa oleville joukkueille
   6. Luoduille otteluille voi antaa pelipäivät yksitellen
-  7. Tulevat ottelut ja pelatut ottelut voi listata
+  7. Tulevat ottelut ja pelatut ottelut voi listata, (toimi paikallisesti, mutta postgre vaatii vielä opettelua)
   8. Sarjataulukko toteuttaa yhteenvetokyselyn
 
 Tässä vaiheessa pelattuja otteluita on vain muutama, jotta toiminnot voi tarkistella, samoin tulevia
