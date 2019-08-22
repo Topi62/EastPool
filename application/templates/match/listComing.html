@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table class="table-striped tbody tr:nth-of-type(odd)">
+     <tr>
+      <th class="th-victive" >Aika</th>
+      <th class="th-less-vic">Koti</th>
+      <th class="th-less-vic">Vieras</th>
+      
+    </tr>
+    {% for match in matchs %}
+    <tr>
+      <td class="td-shortdatetime" >{{ match.gamedate }}</td>
+      <td class="td-novic">{{ match.hometeamid }}</td>
+      <td class="td-novic">{{ match.visitorteamid }}</td>
+     </tr>
+    
+    {% endfor %}
+  </table>
+{% endblock %}

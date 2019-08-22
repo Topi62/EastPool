@@ -8,29 +8,29 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 [eastpool](https://eastpool.herokuapp.com)
 
-Sivusto käyttää Bootstrapia jo osittain. Omaa css tiedostoa ei lue paikallisesti, joten linkki poistettu.
+Sivusto käyttää Bootstrapia jo osittain. Omaa css tiedostoa ei lue paikallisesti, joten oma style layout.html:ssä.
 
 Tässä vaiheessa toteutettuja:
   1. Käyttäjän rekisteröinti ja poisto
   2. Käyttäjän kirjautumine sisään ja ulos, salasanan vaihto, käyttäjän poisto
   3. Joukkuiden listaus ja joukkueen lisääminen tietokantaan
-  4. Sivustolla dropdown linkit, mutta kaikkia sivuja ei vielä ole, osa vie samoille sivuille
+  4. Navigointipalkki, ihan kaikki ei vielä ole toteutettu
   5. Ylläpito kohdassa voi luoda uuden kauden ja ohjelmallisesti luoda kaksinkertaisen sarjan otteluiden pohjan olemassa oleville joukkueille
   6. Luoduille otteluille voi antaa pelipäivät yksitellen
-  7. Ottelut listautuvat, mutta vielä puutteellisin tiedoin
-  8. Luotu taulut game, frame ja player
+  7. Tulevat ottelut ja pelatut ottelut voi listata
+  8. Sarjataulukko toteuttaa yhteenvetokyselyn
 
-Seuraava vaihe
-  1. Syötetään niihin muutama pelattu ottelu.
-  2. Edellisestä saadaan pohja, jolla yhteenvetokyselyn tuloksena sarjataulukko.
-  
-Yhteenvetokyselyä ei tällä hetkellä oikeastaan ole. Lähimpänä on varmistus, että ottelu luodaan kahdelle eri joukkueelle, tai kauden luonnissa otteluiden teko, jolloin haetaan team taulusta for silmukassa kaikki ja sitten uudelleen for silmukassa kaikki paitsi ylemmässä silmukassa haettu. Aika ei nyt riittänyt, kun netti takkuili tämän illan.
+Tässä vaiheessa pelattuja otteluita on vain muutama, jotta toiminnot voi tarkistella, samoin tulevia
+
+  1. autorisoinnin täydennys
+  2. asennusohje
+  3. käyttöohje 
 
 Tietokantana  on sqlite paikallisesti ja postgresql herokussa. 
 
 Lomakkeet validoivat syötteen.
 
-Tietotauluja on neljä, seuraavaksi on tarkoitus tehdä match tauluun SCUD toiminnot. 
+Tietotaulut tietokantakaavion mukaisesti, pieniä viilauksia ei ole päivitetty tietokantakaavioon.
 
 Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TST' ja salasana 'Testi'
 Kirjautuneen käyttäjän nimen näkymisen toteutus on vielä huono, pitäisi näkyä kentästä username, ei name + " " + team..

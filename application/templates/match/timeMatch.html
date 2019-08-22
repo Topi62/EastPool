@@ -3,12 +3,17 @@
 {% block body %}
 {{ error}}
 <p>Aikataulutettavat ottelut:</p>
-<Table>
+<Table class="table-striped tbody tr:nth-of-type(odd)">
+ <tr>
+   <th class="th-victive">Kausi</th>
+   <th class="th-less-vic">Koti</th>
+   <th class="th-less-vic">Vieras</th>
+ </tr>
 {% for match in matchs %}
    <tr>
-    <td>Kausi {{ match.idseason }} </td>   
-    <td>Koti {{ match.hometeamid }} </td>
-    <td>Vieras {{ match.visitorteamid }} </td>
+    <td> {{ match.idseason }} </td>   
+    <td> {{ match.hometeamid }} -  </td>
+    <td> {{ match.visitorteamid }} </td>
    </tr>
 {% endfor %}
 </table>
@@ -22,6 +27,14 @@
    <td>
     {{ form.hometeam }}
    </td>
+   <td>
+          <ul>
+            {% for error in form.hometeam.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+
   </tr>
   <tr>
    <td>
@@ -30,6 +43,14 @@
    <td>
     {{ form.visitteam }}
    </td>
+<td>
+          <ul>
+            {% for error in form.visitteam.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+
   </tr>
   <tr>
    <td>
@@ -38,6 +59,14 @@
    <td>
     {{ form.gamedate }}
    </td>
+    <td>
+          <ul>
+            {% for error in form.gamedate.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+
   </tr>
   <tr>
    <td>
@@ -46,6 +75,14 @@
    <td>
     {{ form.season }}
    </td> 
+   <td>
+          <ul>
+            {% for error in form.season.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+
   </tr>
   <tr>
       <td colspan="2">

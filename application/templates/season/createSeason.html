@@ -2,10 +2,10 @@
 
 {% block body %}
    <form method="POST"  action="{{url_for('season_form')}}"> 
-   <table>
+   <table  class="table-striped tbody tr:nth-of-type(odd)">
     <tr>
-      <th>Id</th>
-      <th>Kausi</th>   
+      <th class="th-less-vic">Id</th>
+      <th class="th-victive">Kausi</th>   
     </tr>
     {% for season in seasons %}
     <tr>

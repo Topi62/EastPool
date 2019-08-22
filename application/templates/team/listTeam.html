@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+  <table class="table-striped tbody tr:nth-of-type(odd)">
     <tr>
-      <th>Lyhenne</th>
-      <th>Nimi</th>
+      <th class="th-victive">Lyhenne</th>
+      <th class="th-less-vic">Nimi</th>
     </tr>
     {% for team in teams %}
     <tr>
-      <td>{{ team.shortname }}</td>
-      <td>{{ team.longname }}</td>
+      <td class="td-vic">{{ team.shortname }}</td>
+      <td class="td-long">{{ team.longname }}</td>
     </tr>
     {% endfor %}
   </table>
