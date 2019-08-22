@@ -3,6 +3,7 @@ from application.team.models import Team
 from sqlalchemy.sql import text
 from time import strftime
 import datetime
+import os
 
 class Match(db.Model):
    idmatch = db.Column(db.Integer, primary_key=True)
@@ -35,18 +36,34 @@ class Match(db.Model):
              db.session.add(match)
      db.session.commit()
 
-   @staticmethod
-   def get_coming_match():
-     today = datetime.datetime.now()
-     stmt =text("SELECT strftime('%d.%m. %H:%M', date) AS gamedate, hometeamid, visitorteamid "
+   if os.environ.get("HEROKU"):
+       @staticmethod
+       def get_coming_match():
+          today = datetime.datetime.now()
+          stmt =text("SELECT to_char(date, 'DD.MM. HH24:MI') AS gamedate, hometeamid, visitorteamid "
                 "FROM match WHERE date > :today ORDER BY date ASC").params(today=today)
-     matches = db.engine.execute(stmt) 
-     return matches
-   
-   @staticmethod
-   def get_played_match():
-      stmt =text("SELECT substr(strftime('%d.%m. %H:%M', date),1,6) AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitgamenumwins "
-                "FROM match WHERE status IS NOT 'T' ORDER BY date DESC")
-      matches = db.engine.execute(stmt) 
-      return matches
+          matches = db.engine.execute(stmt) 
+          return matches
 
+       @staticmethod
+       def get_played_match():
+          stmt =text("SELECT to_char(date, 'DD.MM.') AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitgamenumwins "
+                "FROM match WHERE status <> 'T' ORDER BY date DESC")
+          matches = db.engine.execute(stmt) 
+          return matches
+
+   else:
+       @staticmethod
+       def get_coming_match():
+          today = datetime.datetime.now()
+          stmt =text("SELECT strftime('%d.%m. %H:%M', date) AS gamedate, hometeamid, visitorteamid "
+                "FROM match WHERE date > :today ORDER BY date ASC").params(today=today)
+          matches = db.engine.execute(stmt) 
+          return matches
+
+       @staticmethod
+       def get_played_match():
+          stmt =text("SELECT substr(strftime('%d.%m. %H:%M', date), 1, 6) AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitgamenumwins "
+                "FROM match WHERE status <> 'T' ORDER BY date DESC")
+          matches = db.engine.execute(stmt) 
+          return matches
