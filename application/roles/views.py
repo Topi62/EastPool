@@ -1,13 +1,13 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_required, login_user, logout_user, current_user
-from application import app, db
+from flask_login import  current_user
+from application import app, db, login_required
 from application.views import string_check
 from application.roles.models import Role
 from application.roles.forms import RoleForm
 
 
 @app.route("/roles/update", methods = ["GET", "POST"])
-@login_required
+@login_required("Admin")
 def role_update():
     if request.method == "GET":
         return render_template("roles/roleaddform.html", form = RoleForm())
@@ -28,7 +28,7 @@ def role_update():
         return redirect(url_for("index"))
 
 @app.route("/roles/delete", methods = ["GET", "POST"])
-@login_required
+@login_required(role="Admin")
 def role_delete():
     if request.method == "GET":
         return render_template("roles/roleremoveform.html", form = RoleForm())

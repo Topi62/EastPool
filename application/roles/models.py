@@ -22,4 +22,7 @@ class Role(db.Model):
     def getRoles(name, team):
        stmt = text("SELECT role FROM role WHERE name= :name AND team = :team").params(name=name, team=team)
        res = db.engine.execute(stmt)
-       return list(res)
+       roles = []
+       for r in res:
+          roles.append(r[0])
+       return roles

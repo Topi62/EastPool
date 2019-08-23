@@ -1,6 +1,6 @@
 from application import app, db
 from flask import redirect, url_for, render_template, request
-from flask_login import login_required
+from application import login_required
 from application.views import string_check
 from application.match.models import Match
 from application.match.forms import TimeMatchForm, ListMatchForm
@@ -18,7 +18,7 @@ def match_list_played():
     return redirect(url_for("match_list_played"))
 
 @app.route("/match/timeMatch/", methods=['GET', 'POST'])
-@login_required
+@login_required("Admin")
 def match_time():
     if request.method == 'GET':
         return render_template("match/timeMatch.html", matchs = Match.query.filter(Match.date==None).all(), form = TimeMatchForm())

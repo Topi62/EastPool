@@ -1,5 +1,5 @@
 # flask sovellus
-from flask import Flask
+from flask import Flask, flash
 app = Flask(__name__)
 
 # Tuodaan SQLAlchemy k&auml;ytt&ouml;&ouml;n
@@ -53,7 +53,7 @@ def login_required(role="ANY"):
                 unauthorized = True
                 
                 for user_role in current_user.roles():
-                    if user_role == role:
+                     if user_role == role:
                         unauthorized = False
                         break
 
@@ -69,6 +69,12 @@ def login_required(role="ANY"):
 # omat toiminnallisuudet
 from application import views
 
+from application.auth import models
+from application.auth import views
+
+from application.roles import models
+from application.roles import views
+
 from application.team import models
 from application.team import views
 
@@ -77,12 +83,6 @@ from application.season import views
 
 from application.match import models
 from application.match import views
-
-from application.auth import models 
-from application.auth import views 
-
-from application.roles import models
-from application.roles import views
 
 from application.serietables import views
 
@@ -93,16 +93,8 @@ from application.game import models
 from application.frame import models
 
 # kirjautuminen
+
 from application.auth.models import User
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
-
-from flask_login import LoginManager
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-login_manager.login_view =  "auth_login"
-login_manager.login_message = "Toiminto vaatii kirjautumisen."
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -1,13 +1,13 @@
 from application import app, db
 from flask import redirect, url_for, render_template, request
-from flask_login import login_required
+from application import login_required
 from application.views import string_check
 from application.season.models import Season
 from application.season.forms import SeasonForm
 from application.match.models import Match
 
 @app.route("/season/newSeason/", methods=['GET', 'POST'])
-@login_required
+@login_required("Admin")
 def season_form():
     if request.method == 'GET':
        return render_template("season/createSeason.html", form = SeasonForm(), seasons = Season.query.all())

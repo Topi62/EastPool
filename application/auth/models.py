@@ -36,4 +36,7 @@ class User(db.Model):
         return True
 
     def roles(self):
-        return Role.getRoles(self.name, self.team)
+        roles =  Role.getRoles(self.name, self.team)
+        if not roles:
+             return  []
+        return roles

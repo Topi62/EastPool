@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, login_user, logout_user, current_user
-from application import app, db
+from flask_login import  login_user, logout_user, current_user
+from application import app, db, login_required
 from application.views import string_check
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegUserForm, ChangePw, DelUser
@@ -77,7 +77,7 @@ def auth_reg():
     return render_template("auth/loginform.html", form = LoginForm())
 
 @app.route("/auth/changePw", methods= ["GET", "POST"])
-@login_required
+@login_required("ANY")
 def auth_changepw():
     if request.method == "GET":
          return render_template("auth/changepw.html", form = ChangePw())
@@ -98,7 +98,7 @@ def auth_changepw():
     return redirect(url_for("index"))
 
 @app.route("/auth/deluser", methods= ["GET", "POST"])
-@login_required
+@login_required("Admin")
 def auth_deluser():
     if request.method == "GET":
          return render_template("auth/deluser.html", form = DelUser())

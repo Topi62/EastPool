@@ -1,6 +1,5 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, url_for, render_template, request
-from flask_login import login_required
 from application.views import string_check
 from application.team.models import Team
 from application.team.forms import TeamForm
@@ -11,17 +10,16 @@ def team_list():
     return redirect(url_for("team_list"))
 
 @app.route("/team/newTeam/")
-@login_required
+@login_required("ANY")
 def team_form():
     return render_template("team/newTeam.html", form = TeamForm())
 
 @app.route("/team/", methods=["GET", "POST"])
-@login_required
+@login_required("ANY")
 def team_create():
     form = TeamForm(request.form)
     if not form.validate():
         return render_template("team/newTeam.html", form = form)
-    
     if not (string_check(form.shortname.data, 2)):
         return render_template("team/newTeam.html", form = form,
                                error = "Joukkueen oltava lyhenne kaksi isoa kirjainta ja numero")
