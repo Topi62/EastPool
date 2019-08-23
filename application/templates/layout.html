@@ -91,7 +91,9 @@
               <a class="dropdown-item" href="{{ url_for('auth_changepw') }}">Vaihda salasana</a>
               <a class="dropdown-item" href="{{ url_for('auth_deluser') }}">Poista tunnus</a>
               <a class="dropdown-item" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-              <a class="dropdown-item" href="{{ url_for('role_update') }}">Käyttäjän rooli</a>
+              <a class="dropdown-item" href="{{ url_for('role_update') }}">Roolin lisäys</a>
+              <a class="dropdown-item" href="{{ url_for('role_delete') }}">Roolin poisto</a>
+
 	    {% else %}
               <a class="dropdown-item" href="{{ url_for('auth_login') }}">Kirjaudu</a>
 	      <a class="dropdown-item" href="{{ url_for('auth_reg') }}">Rekister&ouml;idy</a>
@@ -117,7 +119,7 @@
 
      {% if current_user.is_authenticated %}
      <p>
-      Tervetuloa {{ current_user.name }} {{current_user.team}} {{ current_user.roles() }}
+      Kirjautuneena {{ current_user.name }} {{current_user.team}} {{ current_user.roles() }}
      </p>
      {% endif %}
  

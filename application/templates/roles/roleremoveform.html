@@ -2,8 +2,8 @@
 
 {% block body %}
 {{ error }}
-<p>Voit luoda tai päivittää käyttäjän roolin</p>
-<form method="POST" action="{{ url_for('role_update') }}">
+<p>Voit poistaa käyttäjän roolin</p>
+<form method="POST" action="{{ url_for('role_delete') }}">
   <table>
     <tr>
       <td>

@@ -36,4 +36,4 @@ class User(db.Model):
         return True
 
     def roles(self):
-        return Role.getRole(self.name, self.team)
+        return Role.getRoles(self.name, self.team)

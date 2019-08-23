@@ -19,8 +19,7 @@ class Role(db.Model):
         self.role = role
 
     @staticmethod
-    def getRole(name, team):
+    def getRoles(name, team):
        stmt = text("SELECT role FROM role WHERE name= :name AND team = :team").params(name=name, team=team)
        res = db.engine.execute(stmt)
-       for r in res:
-          return r.role
+       return list(res)
