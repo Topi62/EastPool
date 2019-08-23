@@ -1,6 +1,7 @@
 from application import db
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
+from application.roles.models import Role
 
 class User(db.Model):
 
@@ -33,3 +34,6 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        return Role.getRole(self.name, self.team)

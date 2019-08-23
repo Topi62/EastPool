@@ -8,33 +8,28 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 [eastpool](https://eastpool.herokuapp.com)
 
-Sivusto käyttää Bootstrapia jo osittain. Omaa css tiedostoa ei lue paikallisesti, joten oma style layout.html:ssä.
 
-Tässä vaiheessa toteutettuja:
-  1. Käyttäjän rekisteröinti ja poisto
-  2. Käyttäjän kirjautumine sisään ja ulos, salasanan vaihto, käyttäjän poisto
-  3. Joukkuiden listaus ja joukkueen lisääminen tietokantaan
-  4. Navigointipalkki, ihan kaikki ei vielä ole toteutettu
-  5. Ylläpito kohdassa voi luoda uuden kauden ja ohjelmallisesti luoda kaksinkertaisen sarjan otteluiden pohjan olemassa oleville joukkueille
-  6. Luoduille otteluille voi antaa pelipäivät yksitellen
-  7. Tulevat ottelut ja pelatut ottelut voi listata, (toimi paikallisesti, mutta postgre vaatii vielä opettelua)
-  8. Sarjataulukko toteuttaa yhteenvetokyselyn
+## Käyttöohje
 
-Tässä vaiheessa pelattuja otteluita on vain muutama, jotta toiminnot voi tarkistella, samoin tulevia
+[Käyttö](documents/käyttöohje.md)
 
-  1. autorisoinnin täydennys
-  2. asennusohje
-  3. käyttöohje 
+## Asennusohje
 
-Tietokantana  on sqlite paikallisesti ja postgresql herokussa. 
+[Asennus](document/asennusohje.md)
 
-Lomakkeet validoivat syötteen.
+## Toteuttamatta
 
-Tietotaulut tietokantakaavion mukaisesti, pieniä viilauksia ei ole päivitetty tietokantakaavioon.
+Tulospalveluna sovellus toimii valmiina. Tämän lisäksi on East-Poolin taustalla yhdistys, jolla on tarve omille nettisivuille
+tiedottamisen kannalta. Toisaalta järjestetään myös muita kilpailuita ja esimerkiksi osallistujamäärään ja ottelukaavioon mukautuva
+kisakaavio olisi hyvä lisä. Nykymuodossa jotkin asiat kuten joukkuiden kohtaamisten määrä, joukkueen pelaajamäärä per ottelu ja 
+erämäärä per peli on kovakoodattuja, nämä voisi olla ylläpitäjän valittavissa kullekin kaudelle.
 
-Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TST' ja salasana 'Testi'
+## Testaus
+
+Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TS1' ja salasana 'Testi'
 Kirjautuneen käyttäjän nimen näkymisen toteutus on vielä huono, pitäisi näkyä kentästä username, ei name + " " + team..
 Myös oman tunnuksen ja salasanan luonti on mahdollista.
+
 
 ## Taustaa 
 
@@ -43,16 +38,18 @@ East-Pool ravintolabiljardiliigaa on pelattu vuodeta 2005 lähtien Itä-Helsingi
 
 Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
-## Tietotauluja
+## Tietokantarakenne
 
 1. Team joukkueet, sarjataulukko näyttää paremmuusjärjestyksen
 1. Player pelaajat, kuuluvat johonkin joukkueeseen, pistepörssi
-1. Season kausi, syyskuusta toukokuulle vuosittain
-1. Match ottelut, joukkueet kohtaavat
-1. Game pelit, pelaajat kohtaavat, pelitulos ratkaisee ottelun
-1. Frame erät, pelin tulos ratkeaa erissä
+1. Season kausi, syyskuusta toukokuulle vuosittain pelataan sarja, jonka parhaat palkitaan
+1. Match ottelu, joukkueet kohtaavat kauden aikana sekä kotiottelussa, että vierasottelussa
+1. Game pelit, pelaajat kohtaavat kolme x kolme henkisin joukkuein, pelientulos ratkaisee ottelun
+1. Frame erät, pelin tulos ratkeaa erissä, East-Poolissa pelataan kolmeen voittoon
 
 [tietokantakaavio](documents/EastPoolTK.pdf)
+
+[Taulujen luonti](documents/CreateTables.md)
 
 ## User Storyt
 

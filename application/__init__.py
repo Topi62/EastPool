@@ -36,6 +36,9 @@ from application.match import views
 from application.auth import models 
 from application.auth import views 
 
+from application.roles import models
+from application.roles import views
+
 from application.serietables import views
 
 from application.player import models

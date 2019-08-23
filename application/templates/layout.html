@@ -42,6 +42,7 @@
         text-align: left;
     } 
     </style>
+
   </head>
 
   <body>
@@ -90,6 +91,7 @@
               <a class="dropdown-item" href="{{ url_for('auth_changepw') }}">Vaihda salasana</a>
               <a class="dropdown-item" href="{{ url_for('auth_deluser') }}">Poista tunnus</a>
               <a class="dropdown-item" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+              <a class="dropdown-item" href="{{ url_for('role_update') }}">Käyttäjän rooli</a>
 	    {% else %}
               <a class="dropdown-item" href="{{ url_for('auth_login') }}">Kirjaudu</a>
 	      <a class="dropdown-item" href="{{ url_for('auth_reg') }}">Rekister&ouml;idy</a>
@@ -102,9 +104,20 @@
     </nav>
   <p><br><br><br> </p>
      <main role="main" class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+         </ul>
+        {% endif %}
+      {% endwith %}
+
+
      {% if current_user.is_authenticated %}
      <p>
-      Tervetuloa {{ current_user.name }} {{current_user.team}}
+      Tervetuloa {{ current_user.name }} {{current_user.team}} {{ current_user.roles() }}
      </p>
      {% endif %}
  

@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
         csrf = False
 
 class RegUserForm(FlaskForm):
-    name = StringField("Nimi")
+    name = StringField("Nimi", [validators.Length(min=1, max=13)])
     shortname = StringField("Joukkue", [validators.Length(min=3, max=3)])
     password = PasswordField("Salasana", [validators.Length(min=1, max=8)])
     confirm = PasswordField("Toista Salasana", [validators.Length(min=1, max=8)])

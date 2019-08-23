@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<p>Voit luoda tai päivittää käyttäjän roolin</p>
+<form method="POST" action="{{ url_for('role_update') }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.name.label }}
+      </td>
+      <td>
+	{{ form.name }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.team.label }}
+      </td>
+      <td>
+        {{ form.team }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+	{{ form.role.label }}
+      </td>
+      <td>
+	{{ form.role }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Tallenna"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}
