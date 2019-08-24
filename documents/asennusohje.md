@@ -16,20 +16,14 @@ on versio 3.6.8, mutta sovellus toimii myös versiolla 2.7.15+.
 Paikallisasennuksessa tarvitaan virtuaaliympäristö venv. Asennus linuxissa kansio
 nimiseen hakemistoon, johon luodaan virtuaaliympäristölle kansio polku:
 
-'''
-~/kansio$ python3 -m venv polku
-'''
+```~/kansio$ python3 -m venv polku```
 
 windowsssa:
 
-'''
-c:\Paht to Python\python 3 -m venv c:\kansio\polku
-'''
+```c:\Paht to Python\python 3 -m venv c:\kansio\polku```
 
 Jatkossa komennot annetaan hakemistossa kansio, jos muuta ei mainita.
 
 Luotu virtuaaliympäristö on aktivoitava. Tämä tapahtuu komennolla:
 
-'''
-source polku/bin/activate
-'''
+```source polku/bin/activate```

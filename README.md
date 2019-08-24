@@ -15,7 +15,7 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 ## Asennusohje
 
-[Asennus](document/asennusohje.md)
+[Asennus](documents/asennusohje.md)
 
 ## Tämän viikon tehtyjä
 
