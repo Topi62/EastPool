@@ -14,15 +14,13 @@ class User(db.Model):
 
     name = db.Column(db.String(14), nullable=False)
     team = db.Column(db.String(3), ForeignKey('team.shortname'), nullable=False)
-    username = db.Column(db.String(18), nullable=True)
     password = db.Column(db.String(8), nullable=False)
 
     def __init__(self, name, shortname, password):
         self.name = name
         self.team = shortname
         self.password = password
-        self.username = name + " " + shortname
-
+        
     def get_id(self):
         return self.id
 
