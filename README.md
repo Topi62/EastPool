@@ -11,11 +11,11 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 ## Käyttöohje
 
-[Käyttö](documents/käyttöohje.md)
+[Käyttö ohjeet](documents/kayttoohje.md)
 
 ## Asennusohje
 
-[Asennus](documents/asennusohje.md)
+[Asennus ohjeet](documents/asennusohje.md)
 
 ## Tämän viikon tehtyjä
 

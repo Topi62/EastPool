@@ -9,6 +9,12 @@ Sovelluskehitystä ja versionhallintaa varten on tämä Github-repositio.
 
 Koneessa tulee olla Python 3.6.8+ ja [Git](https://git-scm.com) asennettuna. 
 
+### Sovelluksen lataaminen Githubista
+
+Lataa sovellus Githubista kansioon komennolla
+
+```~/kansio git clone https://github.com/Topi62/Eastpool.git```
+
 ### Virtuaaliympäristö
 
 Paikallisasennuksessa tarvitaan Pythonin virtuaaliympäristö venv. Asennus linuxissa 'kansio'
@@ -29,27 +35,21 @@ Luotu virtuaaliympäristö on aktivoitava. Tämä tapahtuu komennolla:
 
 Komentokehotteen eteen tullut (polku) kertoo, että ympäristö on aktiivinen.
 
-### Flask
 
-Virtuaaliympäristöön tarvitaan Flask kirjasto. Asennus suoritetaan pythonin 
-asennuspaketilla pip komennolla:
+### Riippuvuudet
 
-```(polku) ~/kansio$ pip install Flask```
+Sovelluksen tarvitsemat riippuvuudet on tiedostossa requiments.txt. Ne asennetaan komennolla:
+
+```(polku) ~/kansio$ pip install -r requiments.txt```
 
 Asennuksen palaute kertoo, jos uudempi versio pip asennuspakettiin  on saatavilla,
 tämä on hyvä päivittää
 
 ```(polku) ~/kansio$ pip install --upgrade pip```
 
-### Sovelluksen lataaminen Githubista
-
-Lataa sovellus Githubista kansioon komennolla
-
-```~/kansio git clone https://github.com/Topi62/Eastpool.git```
-
 ### Käynnistäminen
 
-Kun virtuaaliympäristö on aktiivinen, käynnistä sovellus komennolla:
+Kun virtuaaliympäristö on aktiivinen ja riippuvuudet asennettu, käynnistä sovellus komennolla:
 
 ```(polku) ~/kansio python3 run.py```
 
