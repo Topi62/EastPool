@@ -13,8 +13,9 @@ ottelun osapuolia.
 
 ## Rekisteröityminen
 
-Kuka tahansa voi luoda itselleen tunnuksen olemassa olevalle joukkueelle. Ylläpitäjän lisää rooolin käyttäjätunnukseen ja näin valvoo
-ettei toimintoja voi tehdä ulkopuoliset.
+Kuka tahansa voi luoda itselleen tunnuksen olemassa olevalle joukkueelle. Mikäli joukkuetta ei vielä ole, on se luotava ensin. 
+Ylläpitäjän lisää pyynnöstä kapteenin roolin käyttäjätunnukseen ja näin valvoo ettei kapteenille kuuluvia toimintoja voi tehdä 
+ulkopuoliset. 
 
 ## Kirjautuminen
 
@@ -59,6 +60,8 @@ Lisää joukkueensa, lisää pelaajat joukkueeseensa ja tulospalvelussa kirjaa p
 
 ### Joukkueen lisäys
 
+Kuka tahansa voi luoda joukkueen. Kun joukkue on luotu, voi käyttäjä rekisteröityä se tunnuksensa joukkueosana.
+
 Joukkueelle on annettava tunnus, joka on kaksi isoa kirjainta ja numero. Sen on oltava uniikki, eli ei voi olla jo käytössä.
 
 Joukkueen nimessä voi oll kirjaimia, numeroita ja välilyöntejä. Maksimipituus on NN merkkiä.
@@ -70,6 +73,8 @@ Eastpoolissa kaikkien pelaajien on oltava yhdistyksen jäseniä. Tässä vaihees
 validointi, että kyseessä on maksimissaan kolme numeroa pitkä kokonaisluku.
 
 ## Kaikille avoinna
+
+Joukkueen lisääminen.
 
 Ottelut Liveseuranta. Täältä voi seurata menossa olevia pelejä reaaliajassa. Käyttäjä valitsee päivän otteluista haluamansa ja 
 tämän jälkeen sivu päivittyy minuutin välein. 

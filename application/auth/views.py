@@ -42,6 +42,7 @@ def auth_logout():
 
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_reg():
+    # lomake käyttäjän rekisteröitymiseen
     if request.method == "GET":
          return render_template("auth/regform.html", form = RegUserForm())
 
