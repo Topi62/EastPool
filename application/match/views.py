@@ -9,17 +9,20 @@ from sqlalchemy.sql import func
 
 @app.route("/match/listComingMatch/")
 def match_list_tocome():
+    # Näyttää tulevat ottelut
     return render_template("match/listComing.html", matchs =  Match.get_coming_match())
     return redirect(url_for("match_list_tocome"))
 
 @app.route("/match/listPlayedMatch/")
 def match_list_played():
+    # Näyttää pelatut ottelut
     return render_template("match/listPlayed.html", matchs =  Match.get_played_match())
     return redirect(url_for("match_list_played"))
 
 @app.route("/match/timeMatch/", methods=['GET', 'POST'])
 @login_required("Admin")
 def match_time():
+    # Näyttää ottelut joita ei ole pelattu ja joille ei ole määritelty pelipäivää
     if request.method == 'GET':
         return render_template("match/timeMatch.html", matchs = Match.query.filter(Match.date==None).all(), form = TimeMatchForm())
     form = TimeMatchForm(request.form)
