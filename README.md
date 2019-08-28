@@ -75,7 +75,7 @@ ja tämä toimii foreignkey kenttänä. Samalla poistetaan name ja team kentät 
 
 ## User Storyt
 
-[user storyt](documents/UserStories.pdf)
+[user storyt](documents/userstory.md)
 
 ### Käyttökuvauksien taustana ollut alustava luettelo 
 
