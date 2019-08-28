@@ -56,6 +56,8 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 ## Tietokantarakenne
 
+1. Account, käyttäjät
+1. Roles, käyttäjien roolit sovelluksessa
 1. Team joukkueet, sarjataulukko näyttää paremmuusjärjestyksen
 1. Player pelaajat, kuuluvat johonkin joukkueeseen, pistepörssi
 1. Season kausi, syyskuusta toukokuulle vuosittain pelataan sarja, jonka parhaat palkitaan
@@ -65,7 +67,11 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 [tietokantakaavio](documents/EastPoolTK.pdf)
 
-[Taulujen luonti](documents/CreateTables.md)
+Account ja roles taulujen yhteys on nyt ohjelmallinen. Tulevaisuudessa muutan niin, että roles tauluun lisätään kenttä idaccount,
+ja tämä toimii foreignkey kenttänä. Samalla poistetaan name ja team kentät tarpeettomana roles taulusta. Tätä en todennäköisesti
+ ehdi tehdä kurssin aikana.
+
+[Taulujen luonti](documents/createtables.md)
 
 ## User Storyt
 

@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 class Team(db.Model):
    shortname = db.Column(db.String(3), primary_key=True)
    longname = db.Column(db.String(15))
-
+   # are these below neccessary
    team = db.relationship("User", backref='account')
    hometeam= db.relationship("Player", backref='player')
 
@@ -14,6 +14,7 @@ class Team(db.Model):
 
    @staticmethod
    def check_teams(home, visit):
+      # have to be two different teams exists
       stmt = text("SELECT count(shortname) FROM team WHERE shortname IN (:home, :visit)")
       res = db.engine.execute(stmt, home=home, visit=visit)
       if res == 2:
@@ -22,6 +23,7 @@ class Team(db.Model):
 
    @staticmethod
    def serie_tables(seasonid):
+     # returning serietable of teams
      stmt = text("SELECT team.longname,"
 		 " (SELECT count(idmatch) FROM match WHERE idseason= :season AND homegamenumwins>4 AND hometeamid = team.shortname) +"
 		 " (SELECT count(idmatch) FROM match  WHERE idseason= :season AND visitgamenumwins>4 AND visitorteamid = team.shortname) AS voitot,"
