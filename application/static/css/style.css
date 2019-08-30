@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.th-victive{
+        margin-left: 20 px;
+        margin-right: 20 px;
+        color:#000;
+        background-color:#99ff33;
+        font: bold;
+        text-align: center;
+}
+.th-less-vic{
+        margin-left: 20 px;
+        margin-right: 20 px;
+        color:#000;
+        background-color:#99ff66;
+        text-align: center;
+}
+.td-vic{
+        width: 100px;
+        font-weight: bold;
+        text-align: center;
+}       
+.td-novic{
+        width: 80px;
+        text-align: center;
+}
+.td-shortdatetime{
+        widht: 150px;
+        text-align: left;
+}
+.td-date{
+        widht: 100px;  
+        text-align: left;
+} 
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}

@@ -1,5 +1,6 @@
 from application import app, db
 from flask import redirect, url_for, render_template, request
+from flask_paginate import Pagination, get_page_parameter
 from application import login_required
 from application.views import string_check
 from application.match.models import Match
@@ -24,7 +25,16 @@ def match_list_played():
 def match_time():
     # Näyttää ottelut joita ei ole pelattu ja joille ei ole määritelty pelipäivää
     if request.method == 'GET':
-        return render_template("match/timeMatch.html", matchs = Match.query.filter(Match.date==None).all(), form = TimeMatchForm())
+        page = request.args.get(get_page_parameter(), type=int, default=1)
+        matchs = Match.query.filter(Match.date==None).all()
+        rows = list(matchs)
+        total = len(rows)
+        offset = (page-1)*10+1
+        limit = page*10
+        if limit > total:
+           limit = total
+        pagination = Pagination(page=page,total=total, css_framework='bootstrap4')
+        return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = TimeMatchForm())
     form = TimeMatchForm(request.form)
     if not form.validate():
         return render_template("match/timeMatch.html", form = form)

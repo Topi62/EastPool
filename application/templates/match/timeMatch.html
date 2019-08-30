@@ -2,26 +2,34 @@
 
 {% block body %}
 {{ error}}
-<p>Aikataulutettavat ottelut:</p>
+<p>
+Aikataulutettavia otteluita {{total}} näytetään ottelut {{offset}} - {{limit}}: 
+</p>
+{{ pagination.links }}
+
 <Table class="table-striped tbody tr:nth-of-type(odd)">
  <tr>
+   <th class="th-victive">Numero</th>
    <th class="th-victive">Kausi</th>
    <th class="th-less-vic">Koti</th>
    <th class="th-less-vic">Vieras</th>
  </tr>
 {% for match in matchs %}
    <tr>
+    <td>{{ loop.index + pagination.skip }}</td>
+
     <td> {{ match.idseason }} </td>   
     <td> {{ match.hometeamid }} -  </td>
     <td> {{ match.visitorteamid }} </td>
    </tr>
 {% endfor %}
 </table>
-<p>Anna joukkueet ja pelipäivä</p>
-<form method="POST" action={{ url_for('match_time') }}>
+
+Anna joukkueet ja pelipäivä
+<form  method="POST" action={{ url_for('match_time') }}>
  <table>
   <tr>
-   <td>
+    <td>
     {{ form.hometeam.label }}
    </td>
    <td>
@@ -33,7 +41,7 @@
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
-        </td>
+   </td>
 
   </tr>
   <tr>
@@ -43,13 +51,13 @@
    <td>
     {{ form.visitteam }}
    </td>
-<td>
+   <td>
           <ul>
             {% for error in form.visitteam.errors %}
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
-        </td>
+   </td>
 
   </tr>
   <tr>
@@ -65,7 +73,7 @@
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
-        </td>
+   </td>
 
   </tr>
   <tr>
@@ -81,14 +89,15 @@
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
-        </td>
+   </td>
 
   </tr>
   <tr>
       <td colspan="2">
 	<input type="submit" value="Talleta"/>
       </td>
-    </tr>
+  </tr>
  </table>
 </form>
+
 {% endblock %}  
