@@ -2,29 +2,9 @@
 
 {% block body %}
 {{ error}}
-<p>
-Aikataulutettavia otteluita {{total}} näytetään ottelut {{offset}} - {{limit}}: 
-</p>
-{{ pagination.links }}
-
-<Table class="table-striped tbody tr:nth-of-type(odd)">
- <tr>
-   <th class="th-victive">Numero</th>
-   <th class="th-victive">Kausi</th>
-   <th class="th-less-vic">Koti</th>
-   <th class="th-less-vic">Vieras</th>
- </tr>
-{% for match in matchs %}
-   <tr>
-    <td>{{ loop.index + pagination.skip }}</td>
-
-    <td> {{ match.idseason }} </td>   
-    <td> {{ match.hometeamid }} -  </td>
-    <td> {{ match.visitorteamid }} </td>
-   </tr>
-{% endfor %}
-</table>
-
+<table>
+<tr>
+<td valign="top">
 Anna joukkueet ja pelipäivä
 <form  method="POST" action={{ url_for('match_time') }}>
  <table>
@@ -99,5 +79,33 @@ Anna joukkueet ja pelipäivä
   </tr>
  </table>
 </form>
+</td>
+<td>
+<p>
+Aikataulutettavia otteluita {{total}} näytetään ottelut {{offset}} - {{limit}}: 
+</p>
+{{ pagination.links }}
+
+<Table class="table-striped tbody tr:nth-of-type(odd)">
+ <tr>
+   <th class="th-victive">Numero</th>
+   <th class="th-victive">Kausi</th>
+   <th class="th-less-vic">Koti</th>
+   <th class="th-less-vic">Vieras</th>
+ </tr>
+{% for match in matchs %}
+   <tr>
+    <td>{{ loop.index + pagination.skip }}</td>
+
+    <td> {{ match.idseason }} </td>   
+    <td> {{ match.hometeamid }} -  </td>
+    <td> {{ match.visitorteamid }} </td>
+   </tr>
+{% endfor %}
+</table>
+</td>
+<tr>
+</table>
+
 
 {% endblock %}  
