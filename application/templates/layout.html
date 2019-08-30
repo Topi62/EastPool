@@ -46,8 +46,8 @@
                   <a class="dropdown-item" href="{{ url_for('team_form') }}">Joukkueen lisäys</a>
           {% if current_user.is_authenticated %}
             {% if 'Captain' in current_user.roles()  or 'Admin' in current_user.roles() %}
-
-                  <a class="dropdown-item" href="#">Pelaajien lisäys</a>
+                  <a class="dropdown-item" href="{{ url_for('list_team_players')}}">Pelaajien listauss</a>
+                  <a class="dropdown-item" href="{{ url_for('player_form')}}">Lisää pelaaja</a>
                  </div>
               </li>
             {% endif %}

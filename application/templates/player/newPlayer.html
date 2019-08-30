@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<p>Anna pelaajan  nimi ja jäsennumero</p>
+<form method="POST" action="{{ url_for('player_create') }}">
+{{ error }}
+  <table>
+     <tr>
+	<td>
+	  {{form.name.label}}
+	</td>
+	<td>
+          {{form.name}}
+        </td>
+	<td>
+	  <ul>
+	    {% for error in form.name.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+	</td>	
+     </tr>
+
+     <tr>
+        <td>
+          {{form.member.label}}
+        </td>
+        <td>
+          {{form.member}}
+        </td>
+        <td>
+          <ul>
+            {% for error in form.member.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+     </tr>
+
+     <tr>
+        <td>
+          <input type="submit" value="lisää pelaaja"/>
+        </td>
+     </tr>
+  </table>
+</form>
+{% endblock %}

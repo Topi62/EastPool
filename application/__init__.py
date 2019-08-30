@@ -87,7 +87,7 @@ from application.match import views
 from application.serietables import views
 
 from application.player import models
-
+from application.player import views
 from application.game import models
 
 from application.frame import models

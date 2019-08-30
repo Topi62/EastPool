@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table class="table-striped tbody tr:nth-of-type(odd)">
+    <tr>
+      <th class="th-victive">Nimi</th>
+      <th class="th-less-vic">Jäsennumero</th>
+    </tr>
+    {% for player in players %}
+    <tr>
+      <td class="td-vic">{{ player.name }}</td>
+      <td class="td-less-vic">{{ player.nromember }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
