@@ -32,5 +32,5 @@ class Game(db.Model):
    def getGamesOfMatch(idmatch):
       stmt = text("SELECT Game.idgame, Game.idmatch, Game.homeframewins, Game.visitorframewins, h.name AS homePlayerName, v.name AS visitorPlayerName FROM Game "
                 "JOIN Player AS  h ON h.idplayer = homeplayerid JOIN player v ON v.idplayer = visitorplayerid "
-                "WHERE game.idmatch==:id ORDER BY game.idgame").params(id=idmatch)
+                "WHERE game.idmatch=:id ORDER BY game.idgame").params(id=idmatch)
       return db.engine.execute(stmt)
