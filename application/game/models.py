@@ -1,4 +1,5 @@
 from application  import db
+from sqlalchemy.sql import text
 
 class Game(db.Model):
    idgame = db.Column(db.Integer, primary_key=True)
@@ -26,3 +27,10 @@ class Game(db.Model):
          homeframewins = homeframewins + 1
          return
      visitorframewins = visitorframewins + 1
+
+   @staticmethod
+   def getGamesOfMatch(idmatch):
+      stmt = text("SELECT Game.idgame, Game.idmatch, Game.homeframewins, Game.visitorframewins, h.name AS homePlayerName, v.name AS visitorPlayerName FROM Game "
+                "JOIN Player AS  h ON h.idplayer = homeplayerid JOIN player v ON v.idplayer = visitorplayerid "
+                "WHERE game.idmatch==:id ORDER BY game.idgame").params(id=idmatch)
+      return db.engine.execute(stmt)

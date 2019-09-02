@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<p>Valitse ottelu </p>
+<form method="POST" action="{{ url_for('select_players') }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.match.label }}
+      </td>
+      <td colspan="3">
+	{{ form.match }}
+      </td>
+    </tr>
+   <tr>
+      <td colspan="4">
+	<input type="submit" value="Seuraava"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<p>Valitse ottelu ja pelaajat</p>
+<form method="POST" action="{{ url_for('match_start') }}">
+  <table>
+    <tr>
+      <td>Ottelu </td>
+      <td colspan="3">
+	{{ match.hometeamid }} - {{match.visitorteamid}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.home1.label }}
+      </td>
+      <td>
+        {{ form.home1 }}
+      </td>
+      <td>
+        {{ form.home2 }}
+      </td>
+      <td>
+        {{ form.home3 }}
+      </td>
+
+    </tr>
+    <tr>
+      <td>
+        {{ form.visit1.label }}
+      </td>
+      <td>
+        {{ form.visit1 }}
+      </td>
+      <td>
+        {{ form.visit2 }}
+      </td>
+      <td>
+        {{ form.visit3 }}
+      </td>
+
+    </tr>
+
+    <tr>
+      <td>{{form.match}}</td>
+      <td colspan="3">
+	<input type="submit" value="Aloita ottelu"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

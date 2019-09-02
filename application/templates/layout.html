@@ -25,7 +25,7 @@
             <div class="dropdown-menu" aria-labelledby="matchdropdown">
              {% if current_user.is_authenticated %}
               {% if 'Captain' in current_user.roles()  or 'Admin' in current_user.roles() %}
-                 <a class="dropdown-item" href="#">Tulospalvelu</a>
+                 <a class="dropdown-item" href="{{ url_for('select_match')}}">Tulospalvelu</a>
               {% endif %}
              {% endif %}
                  <a class="dropdown-item" href="#">Live seuranta</a>
