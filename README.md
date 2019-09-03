@@ -19,12 +19,11 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 ## Tämän viikon tehtyjä
 
-Viime kerran rästi, yhteenvetokysely, joka toteutuu taulukot - sarjataulukot, vielä kovakoodattu kaudelle 14 koska vain siellä 
-pelattuja pelejä tietokannassa.
+Pelaajien lisäys tehty. Captain roolilla voi omaan joukkueeseen lisätä pelaajia.
 
-Pieniä korjauksia aiempiin tekemisiin.
+Tulospalvelua on aloitettu, nyt saadaan jo ottelupöytäkirja esille.
 
-Autorisointi, joskin rooleja käytössä vain Admin ja ANY. Tulossa pelaajien syöttö, joka vaatii roolia Captain. Player rooli 
+Autorisointi, joskin rooleja käytössä vain Admin ja ANY. Tulevia: Player rooli 
 joukkueen sisäiselle pistepörssille, jos ehdin sen toteuttaa. Visitor rooli jäänee tulevaisuuteen, jotta voidaan 
 rekisteröidä mahdolliset kannustukset liveseurannassa.
 
@@ -34,7 +33,7 @@ Käyttöohjetta on aloitettu, tätä tiedostoa on muokattu kovasti.
 
 ## Toteuttamatta
 
-Tulospalvelu, liveseuranta, pelaajien lisäys puuttuu vielä. 
+Tulospalvelu vaiheessa, liveseuranta. 
 
 Tämän harjoituksen ulkopuolella on East-Poolin taustalla yhdistys, jolla on tarve omille nettisivuille
 tiedottamisen kannalta. Toisaalta järjestetään myös muita kilpailuita ja esimerkiksi osallistujamäärään ja ottelukaavioon mukautuva

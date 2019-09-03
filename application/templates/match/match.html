@@ -1,123 +1,103 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{% for game in games %}
-  {% if loop.index == 0 %}
-    {{ game.idmatch }}
-    {% set home1 = game.homePlayerName %}
-    {% set visit1 = game.visitPlayerName %}
-    {% set homeg1 = game.homeframewins %}
-    {% set visitg1 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 1 %}
-    {% set visit2 = game.visitPlayerName %}
-    {% set homeg4 = game.homeframewins %}
-    {% set visitg4 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 2 %}
-    {% set visit3 = game.visitPlayerName %}
-    {% set homeg7 = game.homeframewins %}
-    {% set visitg7 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 3 %}
-    {% set home2 = game.homePlayerName %}
-    {% set homeg8 = game.homeframewins %}
-    {% set visitg8 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 4 %}
-    {% set homeg2 = game.homeframewins %}
-    {% set visitg2 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 5 %}
-    {% set homeg5 = game.homeframewins %}
-    {% set visitg5 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 6 %}
-    {% set home3 = game.homePlayerName %}
-    {% set homeg6 = game.homeframewins %}
-    {% set visitg6 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 7 %}
-    {% set homeg9 = game.homeframewins %}
-    {% set visitg9 = game.visitorframewins %}
-  {% endif %}
-  {% if loop.index == 8 %}
-    {% set homeg3= game.homeframewins %}
-    {% set visitg3 = game.visitorframewins %}
-  {% endif %}
-{% endfor %}
-
-  <table> 
+<table>
+ <tr>
+ <td colspan="2">
+  <table class="matchtable"> 
     <tr>
-      <td >{{ match.date }}</td>
-      <td >{{ match.hometeamid }} -</td>
-      <td > {{ match.visitorteamid }}</td>
-      <td >{{ match.homegamenumwins }} -</td>  
-      <td > {{ match.visitorgamenumwins }}</td>
+      <td class="matchdate"">{{ match.date.strftime('%d.%m.%Y') }} </td>
+      <td class="matchtitle">EAST-POOL OTTELU:&nbsp; {{ match.hometeamid }}&nbsp;-&nbsp;{{ match.visitorteamid }}</td>
+      <td class="matchscore"> Tilanne:&nbsp;{{ match.homegamenumwins }}&nbsp;-&nbsp;{{ match.visitgamenumwins }}</td>
     </tr>
   </table>
-
-  <table>
+  </td >
+  </tr>
+  <td >
+    <form method="POST" action={{ url_for('match_book') }}>
+    <table class="gameorder">
+      
+      {% for p in playorder %}
+         <tr> 
+         
+         <td>{{ games[p].homePlayerName }}&nbsp;-&nbsp;{{ games[p].visitPlayerName }}<td> 
+         {% if games[p].homeframewins == 0 and games[p].visitorframewins == 0 and games[p].matchid!=selected %}
+           <td><input type="radio" value={{ games[p].gameid }}></td>
+         {% else %}
+           <td>{{ games[p].homeframewins }}&nbsp;-&nbsp;{{ games[p].visitorframewins }}<td>
+         {% endif %}
+         </tr>
+      {% endfor %}
+      <tr><td> <input type="submit" value={{match.matchid}}>Aloita seuraava</td></tr>
+    </table>
+    </form>
+  </td>
+  <td>
+  <table class="scoretable" >
     <tr>
-      <td ></td>
-      <td colspan="2">{{ visit1 }}</td>
-      <td colspan="2">{{ visit2 }}</td>
-      <td colspan="2">{{ visit3 }}</td>
+      <th ></th>
+      <th  colspan="2" class="scorecolumn">{{ games[0].visitPlayerName }}</th>
+      <th  colspan="2" class="scorecolumn">{{ games[1].visitPlayerName }}</th>
+      <th  colspan="2" class="scorecolumn">{{ games[2].visitPlayerName }}</th>
     </tr>
     <tr>
-      <td rowspan="2">{{ home1 }}</td>
-      <td></td>
-      <td >{{ visitg1 }}</td>
-      <td></td>
-      <td >{{ visitg4 }}</td>
-      <td></td>
-      <td >{{ visitg7 }}</td>
+      <th rowspan="2" class="scorerow">{{ games[0].homePlayerName }}</th>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[0].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[3].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[6].visitorframewins }}</td>
     </tr>
     <tr>
-      <td >{{ homeg1 }}</td>
-      <td></td>
-      <td >{{ homeg4 }}</td>
-      <td></td>
-      <td >{{ homeg7 }}</td>
-      <td></td>
+      <td class="scorenums">{{ games[0].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[3].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[6].homeframewins }}</td>
+      <td class="scorenums"></td>
     </tr>
     <tr>
-      <td rowspan="2">{{ home2 }}</td>
-      <td></td>
-      <td >{{ visitg8 }}</td>
-      <td></td>
-      <td >{{ visitg2 }}</td>
-      <td></td>
-      <td >{{ visitg5 }}</td>
+      <th rowspan="2">{{ games[3].homePlayerName }}</th>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[7].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[1].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[4].visitorframewins }}</td>
     </tr>
     <tr>
-      <td >{{ homeg8 }}</td>
-      <td></td>
-      <td >{{ homeg2 }}</td>
-      <td></td>
-      <td >{{ homeg5 }}</td>
-      <td></td>
+      <td class="scorenums" >{{ games[7].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[1].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[4].homeframewins }}</td>
+      <td class="scorenums"></td>
     </tr>
     <tr>
-      <td rowspan="2">{{ home3 }}</td>
-      <td></td>
-      <td >{{ visitg6 }}</td>
-      <td></td>
-      <td >{{ visitg9 }}</td>
-      <td></td>
-      <td >{{ visitg3 }}</td>
+      <th rowspan="2">{{ games[6].homePlayerName }}</th>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[5].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[8].visitorframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[2].visitorframewins }}</td>
     </tr>
     <tr>
-      <td >{{ homeg6 }}</td>
-      <td></td>
-      <td >{{ homeg9 }}</td>
-      <td></td>
-      <td >{{ homeg3 }}</td>
-      <td></td>
+      <td class="scorenums" >{{ games[5].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums" >{{ games[8].homeframewins }}</td>
+      <td class="scorenums"></td>
+      <td class="scorenums">{{ games[2].homeframewins }}</td>
+      <td class="scorenums"></td>
     </tr>
   </table>
 {% if frames is defined %}
-  <table>
+   </td>
+   </tr>
+   <tr>
+   <td colspan="2">
+  <table class="frametable"> 
     <tr>
       {% for frame in frames %}
       <td >{{ frame.winner }} {{ frame.type }}</td>
@@ -125,18 +105,74 @@
     </tr>
     <tr>
       <td>{{ game.homeplayer}}</td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=1, how=1) }}><input type="submit" value="Normaali"/></form></td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=1, how=2) }}><input type="submit" value="Aloitus 9"/></form></td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=1, how=3) }}><input type="submit" value="AP"/></form></td>
+      <td><form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="1"/>
+        <input type="hidden" name="how" value="1"/>
+        <input type="submit" value="Normaali"/>
+       </form>
+       </td>
+       <td>
+       <form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="1"/>
+        <input type="hidden" name="how" value="2"/>
+        <input type="submit" value="Aloitus 9"/>
+      </form>
+      </td>
+      <td>
+       <form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="1"/>
+        <input type="hidden" name="how" value="3"/>
+        <input type="submit" value="A-P"/> 
+       </form>
+      </td>
       <td>{{game.visitplayer}}</td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=2, how=1) }}><input type="submit" value="Normaali"/></form></td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=2, how=2) }}><input type="submit" value="Aloitus 9"/></form></td>
-      <td><form method="POST" action={{ url_for('match_book', idmatch=match.id, cancel=False, player=2, how=3) }}><input type="submit" value="AP"/></form></td>
+      <td><form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="1"/>
+        <input type="hidden" name="how" value="2"/>
+        <input type="submit" value="Normaali"/>
+       </form>
+       </td>
+       <td>
+       <form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="2"/>
+        <input type="hidden" name="how" value="2"/>
+        <input type="submit" value="Aloitus 9"/>
+      </form>
+      </td>
+      <td>
+       <form method="POST" action={{ url_for('match_book') }}>
+        <input type="hidden" name="idmatch" value={{ game.matchid }}/>
+        <input type="hidden" name="idgame" value={{ game.gameid }}/>
+        <input type="hidden" name="cancel" value=False/>
+        <input type="hidden" name="plaeyr" value="2"/>
+        <input type="hidden" name="how" value="3"/>
+        <input type="submit" value="A-P"/>
+       </form>
+      </td>
     </tr>
     <tr>
-     <td><form method="POST" action={{ url_for('match_book',idmatch=match.id, cancel=True) }}><input type="submit" value="Korjaa edellinen"/></form></td>
+     <td><form method="POST" action={{ url_for('match_book') }}>
+      <input type="hidden" name="cancel" value=True/>
+      <input type="submit" value="Korjaa edellinen"/></form></td>
     </tr>
   </table>
 {% endif %}
-
+</td>
+</tr>
+</table>
 {% endblock %}

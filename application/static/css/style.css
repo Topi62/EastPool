@@ -1,17 +1,46 @@
 @charset "UTF-8";
 /* CSS Document */
 
+.scoretable{
+        border: 1px solid black;
+        table-layout: fixed;
+}
+
+.scorerow{
+        width:80px;
+        height:80px;
+        text-valign: center;
+        font-weight: bold;
+        padding: 20px;
+        border: 1px solid black;
+}
+
+.scorecolumn{
+        width:80px;
+        text-align: center;
+        font-weight: bold;
+        padding: 20px;
+        border: 1px solid black;
+}
+
+.scorenums{
+        text-align: center;
+        width:40px;
+        height:40px;
+        padding: 10px;
+        border: 1px solid green;
+}
 .th-victive{
-        margin-left: 20 px;
-        margin-right: 20 px;
+        margin-left: 20px;
+        margin-right: 20px;
         color:#000;
         background-color:#99ff33;
         font: bold;
         text-align: center;
 }
 .th-less-vic{
-        margin-left: 20 px;
-        margin-right: 20 px;
+        margin-left: 20px;
+        margin-right: 20px;
         color:#000;
         background-color:#99ff66;
         text-align: center;

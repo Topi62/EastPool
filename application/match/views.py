@@ -10,7 +10,9 @@ from application.team.models import Team
 from application.player.models import Player
 from application.game.models import Game
 from application.frame.models import Frame
+from sqlalchemy.orm import aliased
 from sqlalchemy.sql import func, text, or_, and_
+from sqlalchemy import asc, desc
 
 @app.route("/match/listComingMatch/")
 def match_list_tocome():
@@ -82,10 +84,19 @@ def select_players():
     form.visit3.choices=visitplayers
     return render_template("match/selectPlayers.html", match=match, form=form)
 
-@app.route('/match/gamebook/<int:idmatch>/<int:game>/<int:cancel>/<int:player>/<int:how>', methods=['POST'])
+@app.route('/match/gamebook/', methods=['POST'])
 @login_required("Captain")
-def match_book(idmatch, game, cancel, player, how):
-    return "Tulossa"
+def match_book():
+    cancel = request.args.get('cancel')
+    if cancel:
+        return "Painettu peruuta edellinen"
+    idgame = request.args.get('next_game')
+    if next_game:
+        return "Valittu peli : " + str(next_game)
+    winner = request.args.get('vin')
+    how = request.args.get('how')
+    game = request.args.get('gameid')
+    return "Tulossa kirjaus pelin " + game + " erän voitti " +  winner + " tavalla " + how
 
 @app.route('/match/startmatch/', methods=['POST'])
 @login_required("Captain")
@@ -103,14 +114,19 @@ def match_start():
     for h in range(0,3):
        g = Game(idmatch, players[h], players[3])
        db.session.add(g)
-       db.session.flush()
        g = Game(idmatch, players[h], players[4])
        db.session.add(g)
-       db.session.flush()
        g = Game(idmatch, players[h], players[5])
        db.session.add(g)
-       db.session.flush()
-       db.session.flush()
-       games = Game.getGamesOfMatch(idmatch)
-       return "games : " + str(list(games))
-    return render_template("match/match.html", match=match, games=games)
+    db.session.flush()
+    H = aliased(Player)
+    V = aliased(Player)
+    games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\
+		join(H,(Game.homeplayerid == H.idplayer)).\
+                join(V, (Game.visitorplayerid == V.idplayer)).\
+                filter(Game.idmatch==idmatch).\
+                order_by(asc(Game.idgame))
+    db.session.commit()
+    playorder=[0,4,8,1,5,6,2,3,7]
+    selected=0
+    return render_template("match/match.html", selected=selected, playorder=playorder, match=match, games=games)
