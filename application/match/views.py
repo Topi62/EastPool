@@ -13,6 +13,7 @@ from application.frame.models import Frame
 from sqlalchemy.orm import aliased
 from sqlalchemy.sql import func, text, or_, and_
 from sqlalchemy import asc, desc
+from datetime import datetime, timedelta
 
 @app.route("/match/listComingMatch/")
 def match_list_tocome():
@@ -58,7 +59,9 @@ def match_time():
 @login_required("Captain")
 def select_match():
     form= SelectMatchForm()
-    form.match.choices=[(m.idmatch, m.hometeamid + '-' + m.visitorteamid) for m in Match.query.filter(and_(or_(Match.hometeamid==current_user.team, Match.visitorteamid==current_user.team),Match.status=='T')).all()]
+    tomorrow = datetime.today() + timedelta(days=1)
+
+    form.match.choices=[(m.idmatch, m.hometeamid + '-' + m.visitorteamid) for m in Match.query.filter(and_(and_(or_(Match.hometeamid==current_user.team, Match.visitorteamid==current_user.team),Match.status=='T'), Match.date<tomorrow)).all()]
     return render_template("match/selectMatch.html", form=form )
 
 @app.route("/match/selectPlayersTomatch/", methods=['POST'])
