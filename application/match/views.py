@@ -30,29 +30,28 @@ def match_list_played():
 @login_required("Admin")
 def match_time():
     # Näyttää ottelut joita ei ole pelattu ja joille ei ole määritelty pelipäivää
-    if request.method == 'GET':
-        page = request.args.get(get_page_parameter(), type=int, default=1)
-        matchs = Match.query.filter(Match.date==None).all()
-        rows = list(matchs)
-        total = len(rows)
-        offset = (page-1)*10+1
-        limit = page*10
-        if limit > total:
-           limit = total
-        pagination = Pagination(page=page,total=total, css_framework='bootstrap4')
-        return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = TimeMatchForm())
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    matchs = Match.query.filter(Match.date==None).all()
+    rows = list(matchs)
+    total = len(rows)
+    offset = (page-1)*10+1
+    limit = page*10
+    if limit > total:
+        limit = total
+    pagination = Pagination(page=page,total=total, css_framework='bootstrap4')
+    if request.method == 'GET':    
+       return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = TimeMatchForm())
     form = TimeMatchForm(request.form)
     if not form.validate():
-        return render_template("match/timeMatch.html", form = form)
+        return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = form)
 
     if  Team.check_teams(form.hometeam.data, form.visitteam.data): 
-        return render_template("match/timeMatch.html", form = form,
-	                                    error =  "jompaa kumpaa joukkuetta ei ole")
+        return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = form, error =  "jompaa kumpaa joukkuetta ei ole")
 
     row_changed = Match.query.filter_by(hometeamid=form.hometeam.data, visitorteamid=form.visitteam.data, idseason=form.season.data).update(dict(date=form.gamedate.data))
     db.session().commit()
 
-    return redirect(url_for("match_list_tocome"))
+    return redirect(url_for("match_time"))
 
 
 @app.route("/match/selectMatch/")
