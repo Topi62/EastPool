@@ -8,13 +8,13 @@
 
    Jos lomake läpäisee validoinnin ja kysely
 ```sql
-   SELECT * FROM team WHERE shortname = 'Joukkueen lyhenne'";
+   SELECT * FROM team WHERE shortname = 'Joukkueen lyhenne';
 ```
    ei palauta joukkuetta,
 
    luodaan uusi joukkue kyselyllä 
    ```sql
-   INSERT INTO team(shortname, longname) VALUES ('Joukkueen lyhenne', 'Joukkueen nimi') 
+   INSERT INTO team(shortname, longname) VALUES ('Joukkueen lyhenne', 'Joukkueen nimi'); 
    ```
 ## Rekisteröityminen
 
@@ -52,7 +52,7 @@
 
    Jos lomake läpäisee validoinnin, sovellus hakee käyttäjän tiedot tietokannasta current_user.name ja current_user.team tiedoilla ja päivittää salasaan kyselyllä 
 ```sql
-   UPDATE account SET date_modified = CURRENT_TIMESTAMP, password = 'Salasana' WHERE id = ?
+   UPDATE account SET date_modified = CURRENT_TIMESTAMP, password = 'Salasana' WHERE id = ?;
 ``` 
 
 ## Ottelukalenteri
@@ -85,15 +85,20 @@ palauttamat tiedot taulusta match.
 
    Valikosta Ottelut - Tulospalvelu
 
-   Tulospalveluun sisältyy lukuisia select, count, update kyselyitä tietokantaan. Liitoksista esimerkki, joka on toteutetu sqlalchemyllä :
+   Tulospalveluun sisältyy lukuisia select, count, update kyselyitä tietokantaan. Liitoksista esimerkki, joka on toteutetu sqlalchemyllä : Seuraavassa saadaan pelaajien id numerot vaihdettua heidän nimikseen, sekä listan että ruudukon täyttämiseksi Ottelupöytäkirjassa.
 
 ```python
+```H = aliased(PLayer)
+```V = aliased(Player)
 ```games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\
 ```        join(H,(Game.homeplayerid == H.idplayer)).\
 ```        join(V, (Game.visitorplayerid == V.idplayer)).\
 ```        filter(Game.idmatch==idmatch).\
 ```        order_by(asc(Game.idgame))
 ```
+
+   Esimerkissä liitetään kaksi kertaa sama taulu Player.
+   
 ## Liveseuranta
 
    Ei toteutettu vielä
@@ -104,7 +109,7 @@ palauttamat tiedot taulusta match.
 
    Valikosta Taulukot - Sarjataulukko
 
-   Kysely 
+   Kysely suoritetaan useita alikyselyitä, jotta saadaan sekä koti että vieraspeleissä kerätyt eri arvot yhteen taulukkoon.
    
    ```sql
    SELECT team.longname,
