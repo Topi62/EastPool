@@ -19,21 +19,27 @@ Biljardiliigan (East-Pool) tulospalvelu
 
 ## Tämän viikon tehtyjä
 
-Pelaajien lisäys tehty. Captain roolilla voi omaan joukkueeseen lisätä pelaajia.
+Tulospalvelua on jatkettu, nyt ottelupöytäkirjassa valitaan peli, syötetään eriä ne tallentuvat oikein. Jos poistuu
+ottelupöytäkirjasta, voi siihen palata, mutta vielä ei palata aloitettuun peliin, ja se jää loplta kesken.
 
-Tulospalvelua on aloitettu, nyt saadaan jo ottelupöytäkirja esille.
+Autorisointi, joskin rooleja käytössä vain Admin, Captain ja ANY. Tulevia: Player rooli 
+joukkueen sisäiselle pistepörssille, jota en ehtine toteuttaa. Visitor rooli jäänee tulevaisuuteen, jotta voidaan 
+rekisteröidä mahdolliset kannustukset liveseurannassa, jota en myöskään ehdi kurssin aikana saada alulle.
 
-Autorisointi, joskin rooleja käytössä vain Admin ja ANY. Tulevia: Player rooli 
-joukkueen sisäiselle pistepörssille, jos ehdin sen toteuttaa. Visitor rooli jäänee tulevaisuuteen, jotta voidaan 
-rekisteröidä mahdolliset kannustukset liveseurannassa.
+Käytettävyyttä ja saavutettavuutta on ajateltu, muotoiltu ottelupöytäkirjaa, mutta tämä kesken.
 
-Käytettävyyttä ja saavutettavuutta on ajateltu.
+Käyttöohjetta on tarkoitus täydentää seuraavaksi, tätä tiedostoa on muokattu.
 
-Käyttöohjetta on aloitettu, tätä tiedostoa on muokattu kovasti.
+Testaajaa varten tieto, OT2, OT1, HB2 ja JI2 joukkueissa on pelaajat. Näitä vastaan peleissä testaus mielekkäämpää. 
 
 ## Toteuttamatta
 
-Tulospalvelu vaiheessa, liveseuranta. 
+Testaamatta miten sarjataulukkoon kirjautuu, jos ottelusta puuttuu pelaajia.
+
+Tulospalvelussa vielä pari virhettä, keskeneräiseen peliin palaaminen ominaisuus puuttuu, joutuu valitsemaan seuraavan pelin, erien syötössä väärät nimet eikä näy edelliset
+erät, liveseuranta. Pelaajia valittaessa Ei pelaajaa valinta ei toimi.
+
+Liveseuranta jäänee kurssin ulkopuolelle, samoin pelaajien pistepörssi.
 
 Tämän harjoituksen ulkopuolella on East-Poolin taustalla yhdistys, jolla on tarve omille nettisivuille
 tiedottamisen kannalta. Toisaalta järjestetään myös muita kilpailuita ja esimerkiksi osallistujamäärään ja ottelukaavioon mukautuva
@@ -42,7 +48,7 @@ erämäärä per peli on kovakoodattuja, nämä voisi olla ylläpitäjän valitt
 
 ## Testaus
 
-Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TS1' ja salasana 'Testi'
+Testaajaa varten on herokun kannassa käyttäjä 'Testaaja', joukkue 'TS1' ja salasana 'Testi' 
 Kirjautuneen käyttäjän nimen perässä näkyy hänen roolinsa. Rooleja voi lisätä tai poistaa käyttäjä, jonka rooli on 'Admin'. Myös oman tunnuksen ja salasanan luonti on mahdollista.
 
 
