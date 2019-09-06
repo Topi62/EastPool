@@ -30,13 +30,9 @@ rekisteröidä mahdolliset kannustukset liveseurannassa, jota en myöskään ehd
 
 Käytettävyyttä ja saavutettavuutta on ajateltu, muotoiltu ottelupöytäkirjaa, mutta tämä kesken.
 
-Käyttöohjetta on tarkoitus täydentää seuraavaksi, tätä tiedostoa on muokattu.
-
-Testaajaa varten tieto, OT2, OT1, HB2 ja JI2 joukkueissa on pelaajat. Näitä vastaan peleissä testaus mielekkäämpää. 
-
 ## Toteuttamatta
 
-Testaamatta miten sarjataulukkoon kirjautuu, jos ottelusta puuttuu pelaajia.
+Testaamatta miten sarjataulukkoon kirjautuu, jos ottelusta puuttuu pelaajia. Testaajaa varten tieto, OT2, OT1, HB2 ja JI2 joukkueissa on pelaajat. Näitä vastaan peleissä testaus mielekkäämpää, kunhan omaan joukkueeseen on lisätty pelaajat. Tämän jälkeen voi tehdä uuden kauden, aikatauluttaa omat ottelunsa vaikkapa menneille tai kuluvalle päivälle, jolloin tulospalveluun saa valittavaksi useita otteluita.
 
 Tulospalvelussa vielä pari virhettä, keskeneräiseen peliin palaaminen ominaisuus puuttuu, joutuu valitsemaan seuraavan pelin, erien syötössä väärät nimet eikä näy edelliset erät, liveseuranta. Pelaajia valittaessa Ei pelaajaa valinta ei toimi.
 
