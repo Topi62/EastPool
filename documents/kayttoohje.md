@@ -96,7 +96,8 @@ Lisää joukkueensa, lisää pelaajat joukkueeseensa ja tulospalvelussa kirjaa p
 
 ### Joukkueen lisäys
 
-#Add Team
+#Uusi Joukkue
+
 Joukkueen lisäys tapahtuu navigaatiosta "Kapteeneille" - "Joukkueen lisäys"
 
 Kuka tahansa voi luoda joukkueen. Kun joukkue on luotu, voi käyttäjä rekisteröityä se tunnuksensa joukkueosana.
@@ -149,7 +150,7 @@ ja mikäli kyseessä on kolmas erävoitto, kirjautuu pelivoitto kyseiselle joukk
 
 ## Kaikille avoinna
 
-Katso kohta [joukkueen lisäys](#add-team)
+Katso kohta [joukkueen lisäys](#uusi-joukkue)
 
 Ottelut Liveseuranta. Ei toteutettu vielä. Täältä tulevaisuudessa voi seurata menossa olevia pelejä reaaliajassa. Käyttäjä valitsee päivän otteluista haluamansa ja 
 tämän jälkeen sivu päivittyy minuutin välein. 
