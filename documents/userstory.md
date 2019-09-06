@@ -84,7 +84,7 @@
 
    Tulospalveluun sisältyy lukuisia select, count, update kyselyitä tietokantaan. Liitoksista esimerkki, joka on toteutetu sqlalchemyllä :
 
-´´´py
+´´´python
    games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\\
                 join(H,(Game.homeplayerid == H.idplayer)).\\
                 join(V, (Game.visitorplayerid == V.idplayer)).\\
