@@ -2,7 +2,7 @@
 
 ## Account
 
-```
+```sql
 CREATE TABLE account (
         id INTEGER NOT NULL,
         date_created DATETIME,
@@ -18,7 +18,7 @@ CREATE TABLE account (
 
 ## Roles
 
-```
+```sql
 CREATE TABLE roles (
         id INTEGER NOT NULL,
         date_created DATETIME,
@@ -34,7 +34,7 @@ CREATE TABLE roles (
 
 ## Team
 
-```
+```sql
 CREATE TABLE team (
         shortname VARCHAR(3) NOT NULL,
         longname VARCHAR(15),
@@ -44,7 +44,7 @@ CREATE TABLE team (
 
 ## Player
 
-```
+```sql
 CREATE TABLE player (
         idplayer INTEGER NOT NULL,
         idteam VARCHAR(3) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE player (
 
 ## Match
 
-```
+```sql
 CREATE TABLE match (
         idmatch INTEGER NOT NULL,
         idseason INTEGER,
@@ -79,7 +79,7 @@ CREATE TABLE match (
 
 ## Season
 
-```
+```sql
 CREATE TABLE season (
         idseason INTEGER NOT NULL,
         period VARCHAR(9),
@@ -89,7 +89,7 @@ CREATE TABLE season (
 
 ## Game
 
-```
+```sql
 CREATE TABLE game (
 	idgame INTEGER NOT NULL, 
 	idmatch INTEGER,
@@ -108,7 +108,7 @@ CREATE TABLE game (
 
 ## Frame
 
-```
+```sql
 CREATE TABLE frame (
 	idframe INTEGER NOT NULL, 
 	idgame INTEGER, 

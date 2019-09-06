@@ -96,14 +96,10 @@ Lisää joukkueensa, lisää pelaajat joukkueeseensa ja tulospalvelussa kirjaa p
 
 ### Joukkueen lisäys
 
-#### Uusi Joukkue
-
 Joukkueen lisäys tapahtuu navigaatiosta "Kapteeneille" - "Joukkueen lisäys"
 
 Kuka tahansa voi luoda joukkueen. Kun joukkue on luotu, voi käyttäjä rekisteröityä se tunnuksensa joukkueosana.
-
 Joukkueelle on annettava tunnus, joka on kaksi isoa kirjainta ja numero. Sen on oltava uniikki, eli ei voi olla jo käytössä.
-
 Joukkueen nimessä voi oll kirjaimia, numeroita ja välilyöntejä. Minimipituus 1 merkki maksimipituus on 15 merkkiä.
 
 ### Pelaajien lisäys
@@ -150,7 +146,7 @@ ja mikäli kyseessä on kolmas erävoitto, kirjautuu pelivoitto kyseiselle joukk
 
 ## Kaikille avoinna
 
-Katso kohta [joukkueen lisäys](####uusi-joukkue)
+Katso kohdasta kapteeneille - joukkueen lisäys
 
 Ottelut Liveseuranta. Ei toteutettu vielä. Täältä tulevaisuudessa voi seurata menossa olevia pelejä reaaliajassa. Käyttäjä valitsee päivän otteluista haluamansa ja 
 tämän jälkeen sivu päivittyy minuutin välein. 

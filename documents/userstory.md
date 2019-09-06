@@ -6,7 +6,7 @@
 
    Valikosta Kapteeneille - Joukkueen lisäys
 
-   Jos lomake läpäisee validoinnin ja kysely "SELECT * FROM team WHERE shortname = 'Joukkueen lyhenne'" ei palauta joukkuetta,
+   Jos lomake läpäisee validoinnin ja kysely ´´´sqlSELECT * FROM team WHERE shortname = 'Joukkueen lyhenne'";´´´ ei palauta joukkuetta,
 
    luodaan uusi joukkue kyselyllä "INSERT INTO team(shortname, longname) VALUES ('Joukkueen lyhenne', 'Joukkueen nimi') 
 
@@ -16,11 +16,11 @@
 
    Valikosta Käyttäjä - Rekisteröidy
 
-   Jos salasana on syötetty kaksi kertaa samoin ja lomake läpäisee validoinnit ja kysely  "SELECT * FROM account WHERE name = 'Nimi'
-   AND team = 'Joukkue' ei palauta käyttäjää
+   Jos salasana on syötetty kaksi kertaa samoin ja lomake läpäisee validoinnit ja kysely ´´´sqlSELECT * FROM account WHERE name = 'Nimi'
+   AND team = 'Joukkue';´´´ ei palauta käyttäjää
 
-   luodaan uusi käyttäjä kyselyllä "INSERT INTO account(id, date_created, date_modified, name, team, password) VALUES (max(id)+1,
-   CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Nimi', 'Joukkue', 'Salasana') 
+   luodaan uusi käyttäjä kyselyllä ´´´sqlINSERT INTO account(id, date_created, date_modified, name, team, password) VALUES (max(id)+1,
+   CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Nimi', 'Joukkue', 'Salasana');´´´ 
 
 ### Kirjautuminen
 
@@ -36,7 +36,7 @@
    Käyttäjä voi vaihtaa salasanansa, kun on kirjautuneena.
 
    Jos lomake läpäisee validoinnin, sovellus hakee käyttäjän tiedot tietokannasta current_user.name ja current_user.team tiedoilla ja
-   päivittää salasaan kyselyllä "UPDATE account SET date_modified = CURRENT_TIMESTAMP, password = 'Salasana' WHERE id = ?" 
+   päivittää salasaan kyselyllä '''sqlUPDATE account SET date_modified = CURRENT_TIMESTAMP, password = 'Salasana' WHERE id = ?´´´ 
 
 ## Ottelukalenteri
 
@@ -44,19 +44,30 @@
 
    Valikosta Ottelut - Tulevat ottelut
 
-   Näyttää kyselyn "SELECT to_char(date, 'DD.MM. HH24:MI') AS gamedate, hometeamid, visitorteamid FROM match where date > :today
-   ORDER BY date ASC" palauttamat tiedot taulusta match.
+   Näyttää kyselyn ´´´sqlSELECT to_char(date, 'DD.MM. HH24:MI') AS gamedate, hometeamid, visitorteamid FROM match where date > :today
+   ORDER BY date ASC;´´´ palauttamat tiedot taulusta match.
 
 ### Pelatut ottelut
 
    Valikosta Ottelut - Pelatut ottelut
 
-   Näyttää kyselyn "SELECT to_char(date, 'DD.MM.') AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitorgamenumwins
-   FROM match where status <> 'T' ORDER BY date DESC" palauttamat tiedot taulusta match.
+   Näyttää kyselyn ´´´sqlSELECT to_char(date, 'DD.MM.') AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitorgamenumwins
+   FROM match where status <> 'T' ORDER BY date DESC´´´ palauttamat tiedot taulusta match.
     
 ## Tulospalvelu
 
-   Ei toteutettu vielä
+   Valikosta Ottelut - Tulospalvelu
+
+   Tulospalveluun sisältyy lukuisia select, count, update kyselyitä tietokantaan. Liitoksista esimerkki, joka on toteutetu sqlalchemyllä :
+
+   ´´´python
+   games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\
+                join(H,(Game.homeplayerid == H.idplayer)).\
+                join(V, (Game.visitorplayerid == V.idplayer)).\
+                filter(Game.idmatch==idmatch).\
+                order_by(asc(Game.idgame))
+
+   ´´´
 
 ## Liveseuranta
 
