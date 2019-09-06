@@ -26,6 +26,6 @@ def season_form():
     db.session().commit()
     if form.games.data:
         Match.create_matches(form.seasonid.data)
-        return redirect(url_for("match_list"))
+        return redirect(url_for("match_time"))
     return redirect(url_for("index"))
 
