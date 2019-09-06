@@ -1,5 +1,7 @@
 # EastPool
 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons -lisenssi" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">East-Pool ry /tulospalvelu</span>, jonka tekijä on <a xmlns:cc="http://creativecommons.org/ns#" href="www.eastpool.fi" property="cc:attributionName" rel="cc:attributionURL">Toivo Kärkinen</a>, on lisensoitu <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Nimeä-EiKaupallinen-JaaSamoin 4.0 Kansainvälinen -lisenssillä</a>.<br />Perustuu teokseen osoitteessa <a xmlns:dct="http://purl.org/dc/terms/" href="github.com/Topi62/Eastpool.git" rel="dct:source">github.com/Topi62/Eastpool.git</a>.
+
 ## Aihe
 
 Biljardiliigan (East-Pool) tulospalvelu
@@ -36,8 +38,7 @@ Testaajaa varten tieto, OT2, OT1, HB2 ja JI2 joukkueissa on pelaajat. Näitä va
 
 Testaamatta miten sarjataulukkoon kirjautuu, jos ottelusta puuttuu pelaajia.
 
-Tulospalvelussa vielä pari virhettä, keskeneräiseen peliin palaaminen ominaisuus puuttuu, joutuu valitsemaan seuraavan pelin, erien syötössä väärät nimet eikä näy edelliset
-erät, liveseuranta. Pelaajia valittaessa Ei pelaajaa valinta ei toimi.
+Tulospalvelussa vielä pari virhettä, keskeneräiseen peliin palaaminen ominaisuus puuttuu, joutuu valitsemaan seuraavan pelin, erien syötössä väärät nimet eikä näy edelliset erät, liveseuranta. Pelaajia valittaessa Ei pelaajaa valinta ei toimi.
 
 Liveseuranta jäänee kurssin ulkopuolelle, samoin pelaajien pistepörssi.
 
@@ -72,9 +73,7 @@ Kurssin harjoitustyönä teen uuden tulospalvelun East-Poolille.
 
 [tietokantakaavio](documents/EastPoolTK.pdf)
 
-Account ja roles taulujen yhteys on nyt ohjelmallinen. Tulevaisuudessa muutan niin, että roles tauluun lisätään kenttä idaccount,
-ja tämä toimii foreignkey kenttänä. Samalla poistetaan name ja team kentät tarpeettomana roles taulusta. Tätä en todennäköisesti
- ehdi tehdä kurssin aikana.
+Account ja roles taulujen yhteys on nyt ohjelmallinen. Tulevaisuudessa muutan niin, että roles tauluun lisätään kenttä idaccount, ja tämä toimii foreignkey kenttänä. Samalla poistetaan name ja team kentät tarpeettomana roles taulusta. Tätä en todennäköisesti  ehdi tehdä kurssin aikana.
 
 [Taulujen luonti](documents/createtables.md)
 
