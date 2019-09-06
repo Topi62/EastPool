@@ -16,17 +16,11 @@ class Game(db.Model):
      self.homeplayerid= homeplayer
      self.visitorplayerid = visitorplayer
 
-   def start():
+   def start(self):
      self.starttime = db.func.current_timestamp()
 
-   def end(vinner, vintype):
+   def end(self):
      self.endtime = db.func.current_timestamp()
-   
-   def frame_win(who):
-     if who == 1:
-         homeframewins = homeframewins + 1
-         return
-     visitorframewins = visitorframewins + 1
 
    @staticmethod
    def getGamesOfMatch(idmatch):

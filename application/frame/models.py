@@ -10,15 +10,13 @@ class Frame(db.Model):
 
    game = db.relationship("Game")
 
-   def __init__(self, idseason, hometeamid, visitorteamid):
-     self.idseason = idseason
-     self.hometeamid = hometeamid
-     self.visitorteamid = visitorteamid
+   def __init__(self, game):
+     self.idgame = game
 
-   def start():
+   def start(self):
      self.starttime = db.func.current_timestamp()
 
-   def end(vinner, vintype):
+   def end(self, vinner, vintype):
      self.endtime = db.func.current_timestamp()
      self.vinner = vinner
      self.vintype = vintype

@@ -30,7 +30,7 @@ def match_list_played():
 @app.route("/match/timeMatch/", methods=['GET', 'POST'])
 @login_required("Admin")
 def match_time():
-    # Näyttää ottelut joita ei ole pelattu ja joille ei ole määritelty pelipäivää
+    #Lomake otteluiden pelipäivien syöttöön
     page = request.args.get(get_page_parameter(), type=int, default=1)
     matchs = Match.query.filter(Match.date==None).all()
     rows = list(matchs)
@@ -40,7 +40,7 @@ def match_time():
     if limit > total:
         limit = total
     pagination = Pagination(page=page,total=total, css_framework='bootstrap4')
-    if request.method == 'GET':    
+    if request.method == 'GET':
        return render_template("match/timeMatch.html", total=total, offset=offset, limit=limit, matchs =matchs[offset-1:limit], pagination = pagination, form = TimeMatchForm())
     form = TimeMatchForm(request.form)
     if not form.validate():
@@ -51,26 +51,26 @@ def match_time():
 
     row_changed = Match.query.filter_by(hometeamid=form.hometeam.data, visitorteamid=form.visitteam.data, idseason=form.season.data).update(dict(date=form.gamedate.data))
     db.session().commit()
-
     return redirect(url_for("match_time"))
-
 
 @app.route("/match/selectMatch/")
 @login_required("Captain")
 def select_match():
     form= SelectMatchForm()
     tomorrow = datetime.today() + timedelta(days=1)
-
+    # Tulospalvelun lomake ottelun valintaan, ei voi valita ottelua tulevaisuudesta
     form.match.choices=[(m.idmatch, m.hometeamid + '-' + m.visitorteamid) for m in Match.query.filter(and_(and_(or_(Match.hometeamid==current_user.team, Match.visitorteamid==current_user.team),Match.status=='T'), Match.date<tomorrow)).all()]
     return render_template("match/selectMatch.html", form=form )
 
 @app.route("/match/selectPlayersTomatch/", methods=['POST'])
 @login_required("Captain")
 def select_players():
+    #lomake ottelun pelaajien valintaan
     form = SelectMatchForm(request.form)
     idmatch= form.match.data
-    if idmatch == None:
-        return redirect(url_for("index"))
+    games_began = db.session.query(func.count(Game.idgame)).filter(Game.idmatch==idmatch)
+    if games_began.scalar() > 0:
+        return redirect(url_for("match_started", idmatch=idmatch))
     match = Match.query.filter(Match.idmatch==idmatch).first()
     form= SelectPlayersForm()
     form.match.data=idmatch
@@ -89,16 +89,66 @@ def select_players():
 @app.route('/match/gamebook/', methods=['POST'])
 @login_required("Captain")
 def match_book():
-    cancel = request.args.get('cancel')
-    if cancel:
+    #Tulospalvelun sivun valintojen käsittelyt
+    back = request.form.get('back')
+    idgame = request.form.get('idgame')
+    if not back is None:
         return "Painettu peruuta edellinen"
-    idgame = request.args.get('next_game')
-    if next_game:
-        return "Valittu peli : " + str(next_game)
-    winner = request.args.get('vin')
-    how = request.args.get('how')
-    game = request.args.get('gameid')
-    return "Tulossa kirjaus pelin " + game + " erän voitti " +  winner + " tavalla " + how
+        #ohjataan methodiin, joka poistaa erän from frame where idgame ja paluu started_match selected  idgame
+    nextgame = request.form.get('next_game')
+    matchid = request.form.get('match')
+    if not nextgame is None:
+        return redirect(url_for('match_started', idmatch=matchid, selected=nextgame))
+        # seuraavaksi aloitettava peli, ohjataan starded_match selected
+    winner = request.form.get('player')
+    how = request.form.get('how')
+    gameid = request.form.get('idgame')
+    matchid = request.form.get('idmatch')
+    frame = Frame.query.filter_by(idgame = gameid, endtime = None).first()
+    frame.end(winner, how)
+    game = Game.query.filter_by(idgame = gameid).first()
+    if winner =='1':
+      game.homeframewins = game.homeframewins + 1
+      if game.homeframewins == 3:
+         match = Match.query.filter_by(idmatch = matchid).first()
+         match.homegamenumwins = match.homegamenumwins + 1
+         gameid = 0
+    else:
+      game.visitorframewins = game.visitorframewins + 1
+      if game.visitorframewins == 3:
+         match = Match.query.filter_by(idmatch = matchid).first()
+         match.visitgamenumwins = match.visitgamenumwins + 1
+         gameid = 0
+    db.session.commit()
+    return redirect(url_for('match_started', idmatch=matchid, selected=gameid))
+    # tallennettu erä, jos voittajalle kolmas lisätty pelivoitto ja ohjataan starded-match selected 0, jos ei started match selected pysyy gameid
+
+@app.route('/match/startedmatch/<int:idmatch>', defaults={'selected':0})
+@app.route('/match/startedmatch/<int:idmatch>/<int:selected>')
+@login_required("Captain")
+def match_started(idmatch, selected):
+     match = Match.query.filter_by(idmatch=idmatch).first()
+     H = aliased(Player)
+     V = aliased(Player)
+     games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\
+		join(H,(Game.homeplayerid == H.idplayer)).\
+                join(V, (Game.visitorplayerid == V.idplayer)).\
+                filter(Game.idmatch==idmatch).\
+                order_by(asc(Game.idgame))
+     db.session.commit()
+     playorder=[0,4,8,1,5,6,2,3,7]
+     if selected!=0:
+         frame = Frame(selected)
+         frame.start()
+         db.session.add(frame)
+         db.session.commit()
+         frames = db.session.query(Frame.idgame, Frame.vinner, Frame.vintype, V.name.label('visitorplayer'), H.name.label('homeplayer')).\
+                  join(Game, (Frame.idgame == Game.idgame)).\
+                  join(H, (Game.homeplayerid == H.idplayer)).\
+                  join(V, (Game.visitorplayerid == V.idplayer)).\
+                  filter(frame.idgame == selected).all()
+         return render_template("match/match.html", selected=selected, playorder=playorder, match=match, games=games, frames=frames)
+     return render_template("match/match.html", selected=selected, playorder=playorder, match=match, games=games)
 
 @app.route('/match/startmatch/', methods=['POST'])
 @login_required("Captain")

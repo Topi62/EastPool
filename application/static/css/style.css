@@ -1,6 +1,28 @@
 @charset "UTF-8";
 /* CSS Document */
 
+.matchdate{
+        font-size: 24px;
+        padding: 0px 10px 20px 0px;
+}
+
+.matchtitle{
+        font-size: 40px;
+        font-weight: bold;
+        padding: 0px 10px 36px 10px;
+}
+
+.matchscore{
+        font-size: 24px;
+        font-weight: bold;
+        padding: 0px 0px 20px 10px;
+
+}
+
+.gameorder{
+        padding: 5px 50px 5px 5px;
+}
+
 .scoretable{
         border: 1px solid black;
         table-layout: fixed;
