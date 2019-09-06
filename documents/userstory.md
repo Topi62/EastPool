@@ -30,7 +30,8 @@
 
    luodaan uusi käyttäjä kyselyllä 
 ```sql
-   INSERT INTO account(id, date_created, date_modified, name, team, password) VALUES (max(id)+1,
+   INSERT INTO account(id, date_created, date_modified, name, team, password) 
+```VALUES (max(id)+1,
    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Nimi', 'Joukkue', 'Salasana');
 ```
 ### Kirjautuminen
@@ -62,8 +63,9 @@
 
    Näyttää kyselyn 
 ```sql
-SELECT to_char(date, 'DD.MM. HH24:MI') AS gamedate, hometeamid, visitorteamid FROM match where date > :today
-ORDER BY date ASC;
+SELECT to_char(date, 'DD.MM. HH24:MI') AS gamedate, hometeamid, visitorteamid 
+```FROM match where date > :today
+```ORDER BY date ASC;
 ```
 palauttamat tiedot taulusta match.
 
@@ -74,7 +76,8 @@ palauttamat tiedot taulusta match.
    Näyttää kyselyn
 ```sql
 ```SELECT to_char(date, 'DD.MM.') AS gamedate, hometeamid, visitorteamid, homegamenumwins, visitorgamenumwins
-```FROM match where status <> 'T' ORDER BY date DESC;
+```FROM match where status <> 'T' 
+```ORDER BY date DESC;
 ```
    palauttamat tiedot taulusta match.
     
@@ -85,10 +88,10 @@ palauttamat tiedot taulusta match.
    Tulospalveluun sisältyy lukuisia select, count, update kyselyitä tietokantaan. Liitoksista esimerkki, joka on toteutetu sqlalchemyllä :
 
 ```python
-```games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\\
-```        join(H,(Game.homeplayerid == H.idplayer)).\\
-```        join(V, (Game.visitorplayerid == V.idplayer)).\\
-```        filter(Game.idmatch==idmatch).\\
+```games = db.session.query(Game.idmatch, Game.idgame, Game.homeframewins, Game.visitorframewins, H.name.label('homePlayerName'), V.name.label('visitPlayerName')).\
+```        join(H,(Game.homeplayerid == H.idplayer)).\
+```        join(V, (Game.visitorplayerid == V.idplayer)).\
+```        filter(Game.idmatch==idmatch).\
 ```        order_by(asc(Game.idgame))
 ```
 ## Liveseuranta
@@ -117,13 +120,19 @@ palauttamat tiedot taulusta match.
    ```      (SELECT COALESCE(sum(visitgamenumwins),0) FROM match WHERE idseason= :season AND hometeamid = team.shortname)
    ```       + (SELECT COALESCE(sum(homegamenumwins),0) FROM match  WHERE idseason= :season AND visitorteamid = team.shortname)
    ```       AS pelitappiot,
-   ```      (SELECT COALESCE(sum(homeframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch WHERE idseason= :season AND
-   ```       hometeamid = team.shortname) + (SELECT COALESCE(sum(visitorframewins), 0) FROM game JOIN match ON game.idmatch = 
-     ```     match.idmatch WHERE idseason= :season AND visitorteamid = team.shortname) AS erävoitot,
-  ```       (SELECT COALESCE(sum(visitorframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch WHERE idseason= :season
-  ```        AND hometeamid = team.shortname) + (SELECT COALESCE(sum(homeframewins),0) FROM game JOIN match ON game.idmatch =
-  ```        match.idmatch WHERE idseason= :season AND visitorteamid = team.shortname) AS erätappiot
-   ```       FROM team GROUP BY team.shortname, team.longname ORDER BY voitot DESC, pelivoitot  DESC, erävoitot  DESC "
+   ```      (SELECT COALESCE(sum(homeframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch 
+   ```         WHERE idseason= :season AND hometeamid = team.shortname) + (SELECT COALESCE(sum(visitorframewins), 0) FROM game 
+   ```      JOIN match ON game.idmatch = match.idmatch 
+   ```       WHERE idseason= :season AND visitorteamid = team.shortname) 
+   ```      AS erävoitot,
+  ```       (SELECT COALESCE(sum(visitorframewins),0) FROM game 
+  ```         JOIN match ON game.idmatch = match.idmatch WHERE idseason= :season AND hometeamid = team.shortname) 
+  ```         + (SELECT COALESCE(sum(homeframewins),0) FROM game JOIN match ON game.idmatch = match.idmatch 
+  ```          WHERE idseason= :season AND visitorteamid = team.shortname) 
+  ```        AS erätappiot
+   ```    FROM team 
+   ```    GROUP BY team.shortname, team.longname 
+   ```    ORDER BY voitot DESC, pelivoitot  DESC, erävoitot  DESC;
 ```
 
    Alikyselyt suoritetaan kerran kullekin joukkueelle eli vaativuus 12*joukkuemäärä
